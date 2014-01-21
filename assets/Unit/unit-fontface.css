@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'UnitThin';
+    src: url('unit-thin.eot');
+    src: url('unit-thin.eot') format('embedded-opentype'),
+         url('unit-thin.woff') format('woff'),
+         url('unit-thin.ttf') format('truetype'),
+         url('unit-thin.svg#UnitThinRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'UnitThinItalic';
+    src: url('unit-thinitalic.eot');
+    src: url('unit-thinitalic.eot') format('embedded-opentype'),
+         url('unit-thinitalic.woff') format('woff'),
+         url('unit-thinitalic.ttf') format('truetype'),
+         url('unit-thinitalic.svg#UnitThinItalicRegular') format('svg');
+}
+@font-face {
+    font-family: 'UnitLightItalic';
+    src: url('unit-lightitalic.eot');
+    src: url('unit-lightitalic.eot') format('embedded-opentype'),
+         url('unit-lightitalic.woff') format('woff'),
+         url('unit-lightitalic.ttf') format('truetype'),
+         url('unit-lightitalic.svg#UnitLightItalicRegular') format('svg');
+}
+@font-face {
+    font-family: 'UnitLight';
+    src: url('unit-light.eot');
+    src: url('unit-light.eot') format('embedded-opentype'),
+         url('unit-light.woff') format('woff'),
+         url('unit-light.ttf') format('truetype'),
+         url('unit-light.svg#UnitLightRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'UnitRegular';
+    src: url('unit-regular.eot');
+    src: url('unit-regular.eot') format('embedded-opentype'),
+         url('unit-regular.woff') format('woff'),
+         url('unit-regular.ttf') format('truetype'),
+         url('unit-regular.svg#UnitRegularRegular') format('svg');
+}
+@font-face {
+    font-family: 'UnitRegularItalic';
+    src: url('unit-regularitalic.eot');
+    src: url('unit-regularitalic.eot') format('embedded-opentype'),
+         url('unit-regularitalic.woff') format('woff'),
+         url('unit-regularitalic.ttf') format('truetype'),
+         url('unit-regularitalic.svg#UnitRegularItalicRegular') format('svg');
+}
+@font-face {
+    font-family: 'UnitMedium';
+    src: url('unit-medium.eot');
+    src: url('unit-medium.eot') format('embedded-opentype'),
+         url('unit-medium.woff') format('woff'),
+         url('unit-medium.ttf') format('truetype'),
+         url('unit-medium.svg#UnitMediumRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'UnitMediumItalic';
+    src: url('unit-mediumitalic.eot');
+    src: url('unit-mediumitalic.eot') format('embedded-opentype'),
+         url('unit-mediumitalic.woff') format('woff'),
+         url('unit-mediumitalic.ttf') format('truetype'),
+         url('unit-mediumitalic.svg#UnitMediumItalicRegular') format('svg');
+}
+@font-face {
+    font-family: 'UnitBold';
+    src: url('unit-bold.eot');
+    src: url('unit-bold.eot') format('embedded-opentype'),
+         url('unit-bold.woff') format('woff'),
+         url('unit-bold.ttf') format('truetype'),
+         url('unit-bold.svg#UnitBoldRegular') format('svg');
+}
+
