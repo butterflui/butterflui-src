@@ -7,6 +7,7 @@ $('#stage').dblclick(function(event) {
 
 
 $('.testCanvas').draggable();
+$('#eingabe').draggable();
 
 
 
@@ -16,6 +17,7 @@ function disableDblClick(elementName) {
 	$(elementName).dblclick(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		console.log("das geht");
 	});
 }
+
+

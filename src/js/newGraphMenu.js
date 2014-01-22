@@ -6,8 +6,8 @@ function newGraphMenu(e) {
 	var GraphMenueIn = $('<ul><li><a href="#" class="ListWindowArd">Arduino</a></li></ul><ul><li><a href="#" class="ListWindowVar">Int myInt</a></li><li><a href="#" class="ListWindowVar">Boolean myBool</a></li><li><a href="#" class="ListWindowVar">Float myFloat</a></li></ul>');
 	$(GraphMenueIn).appendTo(GraphMenue)
 
-	var ArdView = $("<div/>",{"class":"ListWindow"});
-	var ArdViewIn = $('<span>test</span>');
+	var ArdView = $("<div/>",{"class":"Arduino ListWindow"});
+	var ArdViewIn = $('<ul><li class ="inaktive"></li><li class ="inaktive"></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class="divide"><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> </ul> <ul class="PinName"> <li>0</li> <li>1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> <li>6</li> <li>7</li> <li class="divide">8</li> <li>9</li> <li class="lessSpace">10</li> <li class="lessSpace">11</li> <li class="lessSpace">12</li> <li class="lessSpace">13</li> </ul> <div class="processor"></div> <ul> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class ="inaktive divide"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> </ul>');
 	$(ArdViewIn).appendTo(ArdView);
 
 	var GraphView = $("<div/>",{"class":"ListWindow"});
@@ -27,8 +27,7 @@ function newGraphMenu(e) {
 		event.stopPropagation();
 		$(this).toggleClass('active');
 
-		console.log($(this).attr('class'));
-
+		//removes 2nd window if nothing is selected
 		if ($(".ListWindow .active").length == 0) {
 			$(ArdView).remove();
 			$(GraphView).remove();

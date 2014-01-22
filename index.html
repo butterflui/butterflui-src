@@ -9,8 +9,8 @@
   <meta name="author" content="Laurens Rinke, Fatih">
 <!-- all Stylesheets here-->
   <link rel="stylesheet" href="style/style.css">
-  <link rel="stylesheet" type="text/css" href="style/jquery-ui-1.10.4.custom.css">
-  <link rel="stylesheet" href="libs/jquery.colorpicker.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="style/jquery-ui-1.10.4.custom.css">
+  <link rel="stylesheet" href="style/jquery.colorpicker.css" type="text/css" media="screen"/>
 
 <!-- all JavaScript Libraries -->
   <script type="text/javascript" src="libs/jquery-1.10.2.min.js"></script>
@@ -30,28 +30,7 @@
 		</ul>
 	</header>
 
-	<div  id="eingabe">
-	    <br>
-	    <label for="treshold">treshold</label>
-	    <input type="text" name="chance" id="treshold"  value="30">
-	    <br>
-
-
-	    <br>
-	    <label  for="name">name</label>
-	    <input type="text" name="beschreibung" id="name" value"name">
-	    <br>
-
-	    <br>
-	    <label  for="name">show tick marks</label>
-	    <input id="tick" name="tick" type="checkbox" required="required" onclick= "validate()" value="true"/>
-	    <br>
-
-	    <br>
-	    <label  for="name">show scale numbers</label>
-	    <input id="scaleNumber" name="skala" type="checkbox" required="required" value="true"/>
-	    <br>
-  	</div>
+	
 
 
 	</div>
@@ -64,6 +43,97 @@
 
 		
 	</div>
+
+
+	<div class="Arduino ListWindow hidden">
+		<ul>
+			
+			
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li class="divide"><a href="#"></a></li>
+
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			
+
+		</ul>
+
+		<ul class="PinName">
+			<li>0</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li class="divide">8</li>
+			<li>9</li>
+			<li class="lessSpace">10</li>
+			<li class="lessSpace">11</li>
+			<li class="lessSpace">12</li>
+			<li class="lessSpace">13</li>
+		</ul>
+
+		<div class="processor"></div>
+		<ul>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#"></a></li>
+			<li class ="inaktive divide"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			<li class ="inaktive"></li>
+			
+
+			
+
+		</ul>
+	</div>
+
+	<div  id="eingabe">
+	    <br>
+	    <label for="treshold">threshold</label>
+	    <input type="text" name="chance" id="treshold"  value="30">
+	    <br>
+
+
+	    <br>
+	    <label  for="name">name</label>
+	    <input type="text" name="beschreibung" id="name" value"name">
+	    <br>
+
+	    <br>
+	    <label  for="name">show tick marks</label>
+	    <input id="tick" name="tick" type="checkbox" required="required"  value="true"/>
+	    <br>
+
+	    <br>
+	    <label  for="name">show scale numbers</label>
+	    <input id="scaleNumber" name="skala" type="checkbox" required="required" value="true"/>
+	    <br>
+  	</div>
 
 
 

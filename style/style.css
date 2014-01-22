@@ -187,4 +187,82 @@ footer ul li {
 	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
 }
 
+.Arduino {
 
+}
+
+.Arduino ul {
+	list-style: none;
+	overflow: hidden;
+	margin: 10px 10px;
+}
+
+.Arduino ul li {
+	float: right;
+
+	padding: 0 2px;
+}
+.Arduino ul li a {
+	display: block;
+	line-height: 8px;
+	padding: 4px 4px;
+	background: #D6D6D6;
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+}
+
+.Arduino ul li a:hover {
+	
+	padding: 3px 3px;
+	background: #D6D6D6;
+	border: 2px solid #4996A2;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+
+}
+
+.Arduino .inaktive {
+	background: #DDDDDD;
+	padding: 4px 4px;
+	margin: 0 2px;
+}
+
+.Arduino .divide {
+	margin-right: 6px;
+}
+
+.Arduino .active {
+	border: 2px solid #4996A2;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9;
+}
+
+.processor {
+	margin: 38px 10px 30px 97px;
+	width: 158px;
+	height: 30px;
+	background-color: #DDDDDD;
+}
+
+.PinName {
+	margin: -15px 10px 0 0 !important; 
+	font-size: 9px;
+}
+
+.PinName li {
+	padding: 0 4.2px !important;
+	text-align: center;
+	font-size: 10px;
+}
+
+.PinName .lessSpace {
+	padding: 0 2.4px !important;
+}
+
+.hidden{
+	visibility: hidden;
+}
