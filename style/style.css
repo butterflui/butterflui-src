@@ -20,6 +20,17 @@ body {
 	height: 100%;
 }
 
+canvas {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+    } 
+
 header {
 	background: #DDDDDD;
 	position: fixed;
@@ -164,6 +175,16 @@ footer ul li {
 	background-color: #9B9B9B;
 }
 
-
+#eingabe {
+	top: 100px;
+	left: 50px;
+	padding: 15px;
+	position: absolute;
+	border-radius: 2px;
+	background: #F6F6F6;
+	-moz-box-shadow:    2px 2px 1px 0px rgba(0,0,0,0.40);
+	-webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.40);
+	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
+}
 
 

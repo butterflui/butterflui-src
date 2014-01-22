@@ -4,34 +4,69 @@
 
 <head> <meta charset = "utf-8">
 
-<title> The HTML5 Template </title>
-  <meta name="description" content="The HTML5 Template">
-  <meta name="author" content="Laurens Rinke">
-
+<title> Butterflui </title>
+  <meta name="description" content="Arduino interfacing library and realtime runtime">
+  <meta name="author" content="Laurens Rinke, Fatih">
+<!-- all Stylesheets here-->
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" type="text/css" href="style/jquery-ui-1.10.4.custom.css">
+  <link rel="stylesheet" href="libs/jquery.colorpicker.css" type="text/css" media="screen"/>
+
+<!-- all JavaScript Libraries -->
   <script type="text/javascript" src="libs/jquery-1.10.2.min.js"></script>
   <script type="text/javascript" src="libs/jquery-ui-1.10.4.custom.min.js"></script>
-
-   <script src = "src/js/newGraphMenu.js "> </script>
-   <script src = "src/js/getVariables.js "> </script>
-   <script src = "src/js/Variables.js "> </script>
+  <script src="libs/processing-1.4.1.js"></script>
+  <script src="libs/processing-1.4.1-api.js"></script>
+  <script src="libs/jquery.colorpicker.js" type="text/javascript"></script>
 
 </head>
 
 <body>
 	<header>
 		<ul>
-			<li><a href="#">Open</a></li>
-			<li><a href="#">Save</a></li>
-			<li><a href="#">Arduino</a></li>
+			<li><a href="">Open</a></li>
+			<li><a href="">Save</a></li>
+			<li><a href="">Arduino</a></li>
 		</ul>
 	</header>
+
+	<div  id="eingabe">
+	    <br>
+	    <label for="treshold">treshold</label>
+	    <input type="text" name="chance" id="treshold"  value="30">
+	    <br>
+
+
+	    <br>
+	    <label  for="name">name</label>
+	    <input type="text" name="beschreibung" id="name" value"name">
+	    <br>
+
+	    <br>
+	    <label  for="name">show tick marks</label>
+	    <input id="tick" name="tick" type="checkbox" required="required" onclick= "validate()" value="true"/>
+	    <br>
+
+	    <br>
+	    <label  for="name">show scale numbers</label>
+	    <input id="scaleNumber" name="skala" type="checkbox" required="required" value="true"/>
+	    <br>
+  	</div>
+
+
+	</div>
+
+
+
 	<div id="stage">
 		<div class="info">Doubleclick for new graph</div>
-		
+			<canvas data-processing-sources="modules/balken.pde" class="testCanvas"></canvas>
+
 		
 	</div>
+
+
+
 	<footer>
 		<ul>
 			<li>Graph</li>
@@ -41,7 +76,8 @@
 		</ul>
 	</footer>
    <script src = "src/js/ui.js "> </script>
-  
+   <script src = "src/js/newGraphMenu.js "> </script>
+   <script src = "src/js/getVariables.js "> </script>
+   <script src = "src/js/Variables.js "> </script>
 </body>
 </html>
-
