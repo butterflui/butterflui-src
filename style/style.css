@@ -9,6 +9,10 @@
 }
 
 
+::selection {
+	background:transparent;
+}
+
 
 
 body {
@@ -146,6 +150,15 @@ footer ul li {
 	display: block;
 	text-align: left;
 }
+
+.ListWindow .active,
+.ListWindow :hover.active {
+
+	background-color: #4996A2;
+	color: white;
+}
+
+
 
 .ListWindow ul li a:hover {
 	background-color: #9B9B9B;

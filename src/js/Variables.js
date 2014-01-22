@@ -1,8 +1,8 @@
 var Variables = new Object();
 Variables = {
-	varInteger:[],
-	varFloat:[],
-	varByte:[],
-	varBoolean:[],
-	varString:[]
+	varInteger:["myInteger","testInt","potiPin"],
+	varFloat:["myFloat","testFloat"],
+	varByte:["ardByte","testByte"],
+	varBoolean:["toggleMenue","listSomething"],
+	varString:["myNameIs","text"]
 };
