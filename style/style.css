@@ -145,6 +145,19 @@ footer ul li {
 
 }
 
+
+.Window {
+	
+	position: absolute;
+	border-radius: 2px;
+	background: #F6F6F6;
+	-moz-box-shadow:    2px 2px 1px 0px rgba(0,0,0,0.40);
+	-webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.40);
+	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
+
+
+}
+
 /*///////////////////////////////////////////////////////////////*/
 /* Listen Windows */
 .ListWindow {
@@ -197,6 +210,13 @@ footer ul li {
 	-moz-box-shadow:    2px 2px 1px 0px rgba(0,0,0,0.40);
 	-webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.40);
 	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
+}
+
+
+.Variables {
+	top: 500px;
+	left: 600px;
+	min-width: 180px;
 }
 
 /*///////////////////////////////////////////////////////////////*/
