@@ -8,15 +8,17 @@
   <meta name="description" content="Arduino interfacing library and realtime runtime">
   <meta name="author" content="Laurens Rinke, Fatih">
 <!-- all Stylesheets here-->
-  <link rel="stylesheet" href="style/style.css">
+ 
   <link rel="stylesheet" href="style/jquery-ui-1.10.4.custom.css">
   <link rel="stylesheet" href="style/jquery.colorpicker.css" type="text/css" media="screen"/>
+  <link rel="stylesheet/less" type="text/css" href="style/style.less" />
+
 
 <!-- all JavaScript Libraries -->
   <script src="libs/jquery-1.10.2.min.js"></script>
   <script src="libs/jquery-ui-1.10.4.custom.min.js"></script>
   <script src="libs/processing-1.4.1.js"></script>
-  <script src="libs/processing-1.4.1-api.js"></script>
+  <script src="libs/less-1.6.1.min.js"></script>
   <script src="libs/jquery.colorpicker.js" type="text/javascript"></script>
 
 </head>
@@ -39,70 +41,18 @@
 
 	<div id="stage">
 		<div class="info">Doubleclick for new graph</div>
-			<canvas data-processing-sources="modules/balken.pde" class="testCanvas"></canvas>	
-			<canvas data-processing-sources="modules/balken.pde" class="testCanvas"></canvas>
-			<canvas data-processing-sources="modules/balken.pde" class="testCanvas"></canvas>
-			<canvas data-processing-sources="modules/balken.pde" class="testCanvas"></canvas>	
-			<canvas data-processing-sources="modules/balken.pde" class="testCanvas"></canvas>
+			<canvas id="testCanvas"></canvas>	
+			<canvas data-processing-sources="modules/balken.pde" class="testCanvas2"></canvas>
+			<canvas data-processing-sources="modules/balken.pde" class="testCanvas2"></canvas>
+			<canvas data-processing-sources="modules/balken.pde" class="testCanvas2"></canvas>	
+			<canvas data-processing-sources="modules/balken.pde" class="testCanvas2"></canvas>
 			
 
 
 		
-	<div id="accord" class="ListWindow Variables">
-		<ul>
-			<li><a href="#" class="ListWindowArd">Arduino</a></li>
-		</ul>
-		<h3>Integer</h3>
-		<div>
-		<ul>
-			<li><a href="#" class="ListWindowVar">alpha</a></li>
-			<li><a href="#" class="ListWindowVar">beta</a></li>
-			<li><a href="#" class="ListWindowVar">circle</a></li>
-			<li><a href="#" class="ListWindowVar">double</a></li>
-			<li><a href="#" class="ListWindowVar">empira</a></li>
-			<li><a href="#" class="ListWindowVar">fedora</a></li>
-			<li><a href="#" class="ListWindowVar">gamma</a></li>
-			<li><a href="#" class="ListWindowVar">hera</a></li>
-		</ul>
-		</div>
-		<h3>Float</h3>
-		<div></div>
-		<ul>
-			<li><a href="#" class="ListWindowVar">alpha</a></li>
-			<li><a href="#" class="ListWindowVar">beta</a></li>
-			<li><a href="#" class="ListWindowVar">circle</a></li>
-			<li><a href="#" class="ListWindowVar">double</a></li>
-			<li><a href="#" class="ListWindowVar">empira</a></li>
-			<li><a href="#" class="ListWindowVar">fedora</a></li>
-			<li><a href="#" class="ListWindowVar">gamma</a></li>
-			<li><a href="#" class="ListWindowVar">hera</a></li>
-		</ul>
-		<h3>Boolean</h3>
-		<div></div>
-		<ul>
-			<li><a href="#" class="ListWindowVar">alpha</a></li>
-			<li><a href="#" class="ListWindowVar">beta</a></li>
-			<li><a href="#" class="ListWindowVar">circle</a></li>
-			<li><a href="#" class="ListWindowVar">double</a></li>
-			<li><a href="#" class="ListWindowVar">empira</a></li>
-			<li><a href="#" class="ListWindowVar">fedora</a></li>
-			<li><a href="#" class="ListWindowVar">gamma</a></li>
-			<li><a href="#" class="ListWindowVar">hera</a></li>
-		</ul>
-		<h3>Bit</h3>
-		<ul>
-			<li><a href="#" class="ListWindowVar">alpha</a></li>
-			<li><a href="#" class="ListWindowVar">beta</a></li>
-			<li><a href="#" class="ListWindowVar">circle</a></li>
-			<li><a href="#" class="ListWindowVar">double</a></li>
-			<li><a href="#" class="ListWindowVar">empira</a></li>
-			<li><a href="#" class="ListWindowVar">fedora</a></li>
-			<li><a href="#" class="ListWindowVar">gamma</a></li>
-			<li><a href="#" class="ListWindowVar">hera</a></li>
-		</ul>
-		<div></div>
-	</div>
 
+
+	
 
 
 
