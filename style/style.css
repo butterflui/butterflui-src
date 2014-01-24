@@ -29,8 +29,13 @@ canvas {
         user-select: none;
         outline: none;
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
-    } 
+    }
 
+.hidden{
+	visibility: hidden;
+} 
+/*///////////////////////////////////////////////////////////////*/
+/* Header */
 header {
 	background: #DDDDDD;
 	position: fixed;
@@ -77,6 +82,8 @@ header ul li {
 
 }
 
+/*///////////////////////////////////////////////////////////////*/
+/* Stage */
 #stage {
 	
 	text-align: center;
@@ -102,6 +109,9 @@ header ul li {
 	font-size: 23px;
 }
 
+
+/*///////////////////////////////////////////////////////////////*/
+/* Footer */
 footer {
 
 	
@@ -135,6 +145,8 @@ footer ul li {
 
 }
 
+/*///////////////////////////////////////////////////////////////*/
+/* Listen Windows */
 .ListWindow {
 	
 	position: absolute;
@@ -187,8 +199,11 @@ footer ul li {
 	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
 }
 
+/*///////////////////////////////////////////////////////////////*/
+/* Arduino Selection Window */
 .Arduino {
-
+top:300px;
+left: 300px;
 }
 
 .Arduino ul {
@@ -215,16 +230,17 @@ footer ul li {
 
 .Arduino ul li a:hover {
 	
-	padding: 3px 3px;
+	/*padding: 3px 3px;*/
 	background: #D6D6D6;
-	border: 2px solid #4996A2;
+	outline: 2px solid #4996A2; 
+	/*border: 2px solid #4996A2;*/
 	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
 	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
 	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
 
 }
 
-.Arduino .inaktive {
+.Arduino .inactive {
 	background: #DDDDDD;
 	padding: 4px 4px;
 	margin: 0 2px;
@@ -249,8 +265,21 @@ footer ul li {
 }
 
 .PinName {
-	margin: -15px 10px 0 0 !important; 
-	font-size: 9px;
+	margin-left: 100px;
+	/*margin: -15px 10px 0 0 !important; 
+	font-size: 9px;*/
+}
+
+.PinName tr {
+	
+}
+
+.PinName td {
+	font-size: 10px;
+}
+
+.lessSpace {
+	padding: 0 2.1px;
 }
 
 .PinName li {
@@ -259,10 +288,22 @@ footer ul li {
 	font-size: 10px;
 }
 
-.PinName .lessSpace {
-	padding: 0 2.4px !important;
+
+
+
+/*///////////////////////////////////////////////////////////////*/
+/* Graph Selection */
+.GraphSelect {
+	top: 200px;
+	left: 400px;
 }
 
-.hidden{
-	visibility: hidden;
+
+.GraphPreview {
+	background: #30383A;
+	margin: 10px;
+	width: 170px;
+	height: 100px;
+
+
 }

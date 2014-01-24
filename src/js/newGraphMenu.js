@@ -1,5 +1,7 @@
 function newGraphMenu(e) {
 
+	/////////////////////////////////////////////////////////////////////
+	// Variables and Html Windows
 	var toggleWindow2 = 0;
 	
 	var GraphMenue = $("<div/>", {"class":"ListWindow"});
@@ -10,30 +12,33 @@ function newGraphMenu(e) {
 	var ArdViewIn = $('<ul><li class ="inaktive"></li><li class ="inaktive"></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class="divide"><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> </ul> <ul class="PinName"> <li>0</li> <li>1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> <li>6</li> <li>7</li> <li class="divide">8</li> <li>9</li> <li class="lessSpace">10</li> <li class="lessSpace">11</li> <li class="lessSpace">12</li> <li class="lessSpace">13</li> </ul> <div class="processor"></div> <ul> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class ="inaktive divide"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> </ul>');
 	$(ArdViewIn).appendTo(ArdView);
 
-	var GraphView = $("<div/>",{"class":"ListWindow"});
-	var GraphViewIn = $('<span>vars</span>')
-	$(GraphViewIn).appendTo(GraphView);
+	var GraphView = $('<div class="GraphSelect ListWindow"> <canvas data-processing-sources="modules/balken_prev.pde" class="GraphPreview"></canvas> <ul> <li><a href="">Bar Graph</a></li> <li><a href="">Toggle Graph</a></li> <li><a href="">Circle Graph</a></li> <li><a href="">Line Graph</a></li> </ul> </div>');
 
 	
 	$("#stage").append(GraphMenue);
 	$(GraphMenue).offset({top:e.pageY, left:e.pageX});
 	
+	/////////////////////////////////////////////////////////////////////
 	//close ListWindow by single click on Stage
 	closeWindowHandler(GraphMenue);
 
+
+	/////////////////////////////////////////////////////////////////////
 	//open second Window
 	$(".ListWindow a").click(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		$(this).toggleClass('active');
-
-		//removes 2nd window if nothing is selected
+	/////////////////////////////////////////////////////////////////////
+	//removes 2nd window if nothing is selected
 		if ($(".ListWindow .active").length == 0) {
 			$(ArdView).remove();
 			$(GraphView).remove();
 			toggleWindow2 = 0;
 		};
 
+	/////////////////////////////////////////////////////////////////////
+	//Open Graphmenue by selecting Variables
 		if($(this).attr('class') == "ListWindowVar active"){
 
 
@@ -57,7 +62,8 @@ function newGraphMenu(e) {
 			}
 
 		};
-
+	/////////////////////////////////////////////////////////////////////
+	//Open Arduino Overview
 		if($(this).attr('class') == "ListWindowArd active"){
 			switch(toggleWindow2)
 			{
@@ -83,6 +89,7 @@ function newGraphMenu(e) {
 
 	disableDblClick(GraphMenue);
 
+	/////////////////////////////////////////////////////////////////////
 	//Show Graph Selector Window
 	function showGraphView(e, positionX, positionY) {
 		
@@ -94,6 +101,7 @@ function newGraphMenu(e) {
 		closeWindowHandler(GraphView);
 		
 	}
+	/////////////////////////////////////////////////////////////////////
 	//Show Arduino Pin Selector Window
 	function showArdView(e, positionX, positionY) {
 		
@@ -105,6 +113,7 @@ function newGraphMenu(e) {
 	}
 
 
+	/////////////////////////////////////////////////////////////////////
 	// Remove Window if click on stage
 	function closeWindowHandler (windowId) {
 
