@@ -1,6 +1,12 @@
 @import url("../assets/Unit/unit-light.css");
 @import url("../assets/Unit/unit-regular.css");
 
+// COLORS
+@highlight: #9B9B9B;
+@activ: #4996A2;
+
+
+
 * {
 	font-size: 14px;
 	font-family: UnitLight;
@@ -40,6 +46,9 @@ h3 {
 	color: #000;
 	font-size: 14px;
 } 
+
+
+
 /*///////////////////////////////////////////////////////////////*/
 /* Header */
 header {
@@ -231,89 +240,104 @@ footer ul li {
 .Arduino {
 top:300px;
 left: 300px;
+padding: 5px;
 }
+.Arduino table{
 
-.Arduino ul {
-	list-style: none;
-	overflow: hidden;
-	margin: 10px 10px;
+	margin: 0 0 0 auto;
 }
-
-.Arduino ul li {
-	float: right;
-
-	padding: 0 2px;
-}
-.Arduino ul li a {
+.Arduino tr {
+	margin: 2px 0;
 	display: block;
+
+}
+
+.Arduino td {
 	line-height: 8px;
-	padding: 4px 4px;
-	background: #D6D6D6;
-	border: 1px solid #B9B9B9;
-	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-}
+	min-width: 8px;
+	max-width: 8px;
+	font-size: 10px;
+	padding: 0 2px;
+	text-align: center;
 
-.Arduino ul li a:hover {
-	
-	/*padding: 3px 3px;*/
-	background: #D6D6D6;
-	outline: 2px solid #4996A2; 
-	/*border: 2px solid #4996A2;*/
-	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
 
 }
 
-.Arduino .inactive {
-	background: #DDDDDD;
-	padding: 4px 4px;
-	margin: 0 2px;
-}
-
-.Arduino .divide {
-	margin-right: 6px;
-}
-
-.Arduino .active {
-	border: 2px solid #4996A2;
-	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9;
-	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9;
-	box-shadow:         0px 2px 0px 0px #E9E9E9;
-}
-
-.processor {
-	margin: 38px 10px 30px 97px;
+.Processor {
+	margin: 18px 10px 20px auto;
 	width: 158px;
 	height: 30px;
 	background-color: #DDDDDD;
 }
 
-.PinName {
-	margin-left: 100px;
-	/*margin: -15px 10px 0 0 !important; 
-	font-size: 9px;*/
+#ArdMod {
+	margin: 15px 10px 0 auto;
+	display: block;
+	width: 71px;
 }
 
-.PinName tr {
+.Arduino input[type=checkbox] {
+	visibility: hidden;
+	display: block;
+	width: 8px;
+	height: 8px;
+
+
+}
+.checkbox {
+	position: relative;
+}
+
+.checkbox label{
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	height: 8px;
+	width: 8px;
+	position: absolute;
+	background: #D6D6D6;
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+
+}
+
+.checkbox label:after {
+	opacity: 0;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	height: 8px;
+	width: 8px;
+	content: '';
+	position: absolute;
 	
 }
 
-.PinName td {
-	font-size: 10px;
+.checkbox label:hover::after {
+	opacity: 1;
+	outline: 2px solid #4996A2;
+	border: none;
 }
 
-.lessSpace {
-	padding: 0 2.1px;
+.checkbox input[type=checkbox]:checked + label:after {
+	opacity: 1;
+	background: #4996A2;
+	outline: 2px solid #4996A2;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9;
 }
 
-.PinName li {
-	padding: 0 4.2px !important;
-	text-align: center;
-	font-size: 10px;
+
+.EmptyPin {
+
+	width: 8px;
+	height: 8px;
+	background-color: #DDDDDD;
 }
+
 
 
 

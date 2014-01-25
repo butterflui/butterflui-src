@@ -14,14 +14,14 @@ function newGraphMenu(e) {
 	});
 		$('.Variables a').click(function(event) {
 			OnClickGraphMenue(event, this);
+
 		});
 	}
 		);
 
 
-	var ArdView = $("<div/>",{"class":"Arduino ListWindow"});
-	var ArdViewIn = $('<ul><li class ="inaktive"></li><li class ="inaktive"></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class="divide"><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> </ul> <ul class="PinName"> <li>0</li> <li>1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> <li>6</li> <li>7</li> <li class="divide">8</li> <li>9</li> <li class="lessSpace">10</li> <li class="lessSpace">11</li> <li class="lessSpace">12</li> <li class="lessSpace">13</li> </ul> <div class="processor"></div> <ul> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li><a href="#"></a></li> <li class ="inaktive divide"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> <li class ="inaktive"></li> </ul>');
-	$(ArdViewIn).appendTo(ArdView);
+	var ArdView = $("<div/>",{"class":"Arduino Window"});
+	ArdView.load('src/html/ArduinoWindow.html');
 
 	var canvas = $('<canvas/>');
 	// var code = $('window').get('../modules/balken_prev.pde');
@@ -137,9 +137,36 @@ function newGraphMenu(e) {
 		$("#stage").append(ArdView);
 		$(ArdView).offset({left:positionX, top:positionY});
 
+
+		$('.Arduino input[type=checkbox]').click(function(event){
+			selectArduinoPin(event,this);
+		});
+
+		$(ArdView).click(function(event) {
+			event.stopPropagation();
+			disableDblClick(ArdView);
+		});
+		
+	
+
 		closeWindowHandler(ArdView);
 		
 	}
+
+	/////////////////////////////////////////////////////////////////////
+	//Arduino Pin Select
+
+	function selectArduinoPin(event,that){
+		event.stopPropagation();
+
+
+		showGraphView(event, $(ArdView).offset().left+$(ArdView).width()+11, $(ArdView).offset().top);
+
+		//console.log($(ArdView).offset().left);
+
+	}
+
+
 
 
 	/////////////////////////////////////////////////////////////////////
