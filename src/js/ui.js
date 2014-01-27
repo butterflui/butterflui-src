@@ -10,7 +10,7 @@ $('#stage').dblclick(function(event) {
 $('.testCanvas').draggable();
 $('#eingabe').draggable();
 
-
+getUIWindow();
 
 
 disableDblClick("#eingabe");

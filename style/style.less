@@ -2,8 +2,11 @@
 @import url("../assets/Unit/unit-regular.css");
 
 // COLORS
-@highlight: #9B9B9B;
-@activ: #4996A2;
+@background: #30383A;
+@highlight: #C2C2C2;
+@activ: #16777B;
+@font: black;
+@window: #DDDDDD;
 
 
 
@@ -19,10 +22,13 @@
 	background:transparent;
 }
 
+::-webkit-scrollbar { width: 6px; }
+
+
 
 
 body {
-	background: #30383A;
+	background: @background;
 	height: 100%;
 }
 
@@ -47,7 +53,17 @@ h3 {
 	font-size: 14px;
 } 
 
+.Window {
+	
+	position: absolute;
+	border-radius: 2px;
+	background: #F6F6F6;
+	-moz-box-shadow:    2px 2px 1px 0px rgba(0,0,0,0.40);
+	-webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.40);
+	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
 
+
+}
 
 /*///////////////////////////////////////////////////////////////*/
 /* Header */
@@ -82,12 +98,12 @@ header ul a {
 }
 
 header ul a #activ {
-	background-color: #4996A2;
+	background-color: @activ;
 	color: white;
 }
 
 header ul a:hover {
-	background-color: #9B9B9B;
+	background-color: @highlight;
 }
 
 header ul li {
@@ -95,6 +111,52 @@ header ul li {
 	
 	float: left;
 
+}
+
+#ModeSelect {
+	top: 0;
+	right: 0;
+	position: absolute;
+	margin: 4px 20px auto auto;
+	padding: 0;
+
+}
+
+#ModeSelect li{
+	
+
+
+//background: #D6D6D6;
+
+
+}
+
+#ModeSelect a{
+	line-height: 25px;
+	padding: 0 20px;
+	text-align: center;
+	color: @font;
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+}
+
+#ModeSelect li:first-child a{
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+
+}
+
+#ModeSelect li:last-child a{
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+#ModeSelect .activ {
+	color: white;
+	background-color: @activ;
+	box-shadow: none;
 }
 
 /*///////////////////////////////////////////////////////////////*/
@@ -161,17 +223,7 @@ footer ul li {
 }
 
 
-.Window {
-	
-	position: absolute;
-	border-radius: 2px;
-	background: #F6F6F6;
-	-moz-box-shadow:    2px 2px 1px 0px rgba(0,0,0,0.40);
-	-webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.40);
-	box-shadow:         2px 2px 1px 0px rgba(0,0,0,0.40);
 
-
-}
 
 /*///////////////////////////////////////////////////////////////*/
 /* Listen Windows */
@@ -205,14 +257,14 @@ footer ul li {
 .ListWindow .active,
 .ListWindow :hover.active {
 
-	background-color: #4996A2;
+	background-color: @activ;
 	color: white;
 }
 
 
 
 .ListWindow ul li a:hover {
-	background-color: #9B9B9B;
+	background-color: @highlight;
 }
 
 #eingabe {
@@ -317,14 +369,14 @@ padding: 5px;
 
 .checkbox label:hover::after {
 	opacity: 1;
-	outline: 2px solid #4996A2;
+	outline: 2px solid @activ;
 	border: none;
 }
 
 .checkbox input[type=checkbox]:checked + label:after {
 	opacity: 1;
-	background: #4996A2;
-	outline: 2px solid #4996A2;
+	background: @activ;
+	outline: 2px solid @activ;
 	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9;
 	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9;
 	box-shadow:         0px 2px 0px 0px #E9E9E9;
@@ -351,7 +403,7 @@ padding: 5px;
 
 
 .GraphPreview {
-	background: #30383A;
+	background: @background;
 	margin: 10px;
 	width: 170px;
 	height: 100px;
@@ -419,12 +471,12 @@ padding: 0;
 	padding-top: 5px;
 }
 .VariablesAccord h3:hover {
-	background-color: #9B9B9B;
+	background-color: @highlight;
 
 }
 
 .VariablesAccord h3:active {
-	background-color: #4996A2;
+	background-color: @activ;
 
 }
 .VariablesAccord ul {
@@ -454,4 +506,107 @@ padding: 0;
 	
 
 
+}
+
+
+/*///////////////////////////////////////////////////////*/
+/*UI Window*/
+
+.UIWindow {
+	top: 200px;
+	left: 600px;
+	background-color: @window;
+}
+
+.UIWindow li {
+	float: left;
+	color: @font;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+
+}
+
+.UIWindow a{
+	color: black;
+	text-decoration: none;
+	display: block;
+	line-height: 30px;
+	text-align: center;
+
+	
+	
+
+	-webkit-touch-callout: none;
+        -webkit-user-select:   none;
+        -khtml-user-select:    none;
+        -moz-user-select:      none;
+        -ms-user-select:       none;
+        user-select:           none;
+        outline: none;
+}
+
+.ui-tabs {
+	padding: 5px;
+}
+.ui-tabs .ui-tabs-panel {
+	padding: 0;
+}
+
+.ui-tabs .ui-tabs-nav {
+	padding: 0;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	padding: 0 15px;
+}
+
+.ui-tabs-active{
+	background-color: @activ;
+	color: white;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	color: white;
+
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#ArduinoIDE {
+	background-color: #E9E9E9;
+}
+
+#ArduinoIDE > div > textarea{
+	background-color: #FFFFFF;
+	width: 440px;
+	height: 450px;
+	padding: 10px 5px;
+	border: none;
+	-webkit-user-select:   none;
+    
+    -moz-user-select:      none;
+    -ms-user-select:       none;
+    user-select:           none;
+    outline: none;
+}
+
+#ArduinoIDE ul {
+	margin-left: 5px;
+}
+
+#ArduinoIDE li {
+	margin-top: 5px;
+}
+
+
+#ArduinoIDE .ui-tabs-active {
+	background-color: #FFFFFF;
+	
+}
+
+#ArduinoIDE .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	color: black;
 }
