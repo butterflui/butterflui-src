@@ -1,8 +1,5 @@
-// Call New Graph Menue
-$('#stage').dblclick(function(event) {
-		
-    newGraphMenu(event);
-});
+//Open New Graph Menue Listener
+newGraphMenue.listen();
 
 
 
@@ -14,6 +11,10 @@ getUIWindow();
 
 
 disableDblClick("#eingabe");
+
+
+
+
 
 function disableDblClick(elementName) {
 	$(elementName).dblclick(function(event) {

@@ -10,6 +10,7 @@ function getUIWindow() {
 			event.preventDefault();
 			event.stopPropagation();
 		});
+		disableDblClick(UIWindow);
 	});
 
 	$('#stage').append(UIWindow);

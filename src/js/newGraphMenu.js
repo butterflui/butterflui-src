@@ -1,4 +1,18 @@
-function newGraphMenu(e) {
+var newGraphMenue = new Object();
+
+
+newGraphMenue.listen = function() {
+	var that = this;
+	$('#stage').dblclick(function(event) {
+	
+	that.set(event);
+	});
+};
+
+ 
+
+
+newGraphMenue.set = function(e) {
 
 
 	/////////////////////////////////////////////////////////////////////
@@ -30,6 +44,7 @@ function newGraphMenu(e) {
 	var GraphView = $('<div class="GraphSelect ListWindow"></div>');
 	var canvasPrev = document.createElement('canvas');
 	var p = Processing.loadSketchFromSources(canvasPrev, ['/modules/balken_prev.pde']);
+	
 	canvasPrev.className = "GraphPreview";
 	var GraphViewIn = $('<ul> <li><a href="">Bar Graph</a></li> <li><a href="">Toggle Graph</a></li> <li><a href="">Circle Graph</a></li> <li><a href="">Line Graph</a></li> </ul>');
 	$(canvasPrev).appendTo(GraphView);
@@ -177,4 +192,4 @@ function newGraphMenu(e) {
 		$(windowId).remove();
 	});
 	}
-}
+};
