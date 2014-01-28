@@ -8,19 +8,23 @@
   <meta name="description" content="Arduino interfacing library and realtime runtime">
   <meta name="author" content="Laurens Rinke, Fatih">
 <!-- all Stylesheets here-->
- 
+  <link rel="stylesheet" href="style/codemirror.css">
+  <link rel="stylesheet" href="style/base16-light.css">
   <link rel="stylesheet" href="style/jquery-ui-1.10.4.custom.css">
   <link rel="stylesheet" href="style/jquery.colorpicker.css" type="text/css" media="screen"/>
   <link rel="stylesheet/less" type="text/css" href="style/style.less" />
+ 
 
 
 <!-- all JavaScript Libraries -->
+<script src="libs/codemirror.js"></script>
+<script src="libs/clike/clike.js"></script>
   <script src="libs/jquery-1.10.2.min.js"></script>
   <script src="libs/jquery-ui-1.10.4.custom.min.js"></script>
   
   <script src="libs/processing-1.4.1.js"></script>
   <script src="libs/less-1.6.1.min.js"></script>
-  <script src="libs/jquery.colorpicker.js" type="text/javascript"></script>
+  <script src="libs/jquery.colorpicker.js"></script>
    <script src = "src/js/newGraphMenu.js "> </script>
    <script src = "src/js/Graphs.js "> </script>
 
@@ -35,10 +39,10 @@
 		</ul>
 		<ul id="ModeSelect">
 			<li>
-				<a href="#">Work</a>
+				<a href="#" title="work">Work</a>
 			</li>
 			<li>
-				<a href="#">Setup</a>
+				<a href="#" title="setup">Setup</a>
 			</li>
 		</ul>
 	</header>
@@ -48,6 +52,14 @@
 
 	</div>
 
+	<div class="SideBar Window">
+		<ul>
+			<li><a href="#"><img src="img/icon_arduino.png" alt=""></a></li>
+			<li><a href="#"><img src="img/icon_variable.png" alt=""></a></li>
+			<li><a href="#"><img src="img/icon_setting.png" alt=""></a></li>
+			<li><a href="#"><img src="img/icon_console.png" alt=""></a></li>
+		</ul>
+	</div>
 
 
 	<div id="stage">

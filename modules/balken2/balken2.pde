@@ -28,7 +28,7 @@ boolean frame = true;
 int frameFarbe = color(150,150,150);
 
 //min
-boolean minimum =false;
+boolean minimum =true;
 float[] xPosMin = new float[100];
 float zeigerAnzeigeMin;
 float zeigerMin;

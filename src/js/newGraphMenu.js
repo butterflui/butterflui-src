@@ -98,6 +98,9 @@ newGraphMenue.set = function(e) {
 					case 2:
 					$(ArdView).remove();
 					$(".ListWindowArd").removeClass('active');
+					$('.Arduino input[type=checkbox]').prop('checked', false);
+					console.log($('.Arduino input[type=checkbox]').is(':checked'));
+
 					showGraphView(event,e.pageX+$(GraphMenue).width()+1,e.pageY);
 					toggleWindow2 = 1;
 					break;
@@ -131,6 +134,7 @@ newGraphMenue.set = function(e) {
 		
 	}
 
+
 	disableDblClick(GraphMenue);
 
 	/////////////////////////////////////////////////////////////////////
@@ -151,6 +155,7 @@ newGraphMenue.set = function(e) {
 		
 		$("#stage").append(ArdView);
 		$(ArdView).offset({left:positionX, top:positionY});
+
 
 
 		$('.Arduino input[type=checkbox]').click(function(event){
@@ -174,9 +179,14 @@ newGraphMenue.set = function(e) {
 	function selectArduinoPin(event,that){
 		event.stopPropagation();
 
+		var checked = $('.Arduino input[type=checkbox]').is(':checked');
 
+		if (checked) {
 		showGraphView(event, $(ArdView).offset().left+$(ArdView).width()+11, $(ArdView).offset().top);
-
+		}else
+		{
+			$(GraphView).remove();
+		}
 		//console.log($(ArdView).offset().left);
 
 	}

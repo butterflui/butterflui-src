@@ -65,6 +65,33 @@ h3 {
 
 }
 
+
+.SideBar {
+	z-index: 902;
+	position: absolute;
+	top: 70px;
+	left:0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	background-color: #DDD;
+}
+
+.SideBar ul {
+	padding: 20px 20px 20px 10px;
+	list-style: none;
+}
+
+.SideBar li {
+}
+
+.SideBar a {
+	width: 40px;
+	text-align: center;
+	display: block;
+	color: black;
+	text-decoration: none;
+}
+
 /*///////////////////////////////////////////////////////////////*/
 /* Header */
 header {
@@ -391,7 +418,9 @@ padding: 5px;
 }
 
 
+.PinActiv {
 
+}
 
 
 /*///////////////////////////////////////////////////////////////*/
@@ -554,6 +583,7 @@ padding: 0;
 
 .ui-tabs .ui-tabs-nav {
 	padding: 0;
+	margin-right: 50px;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
@@ -574,6 +604,37 @@ padding: 0;
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+
+
+
+.UIWindow .closeButton {
+	position: absolute;
+	top: 8px;
+	right: 5px;
+	border-radius: 2px;
+
+	
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+
+	
+}
+
+.UIWindow .closeButton a{
+	width: 20px;
+	height: 20px;
+	color: white;
+	background-image: url(../img/closeButton_passiv.png);
+}
+
+.UIWindow .closeButton a:hover{
+	background-image: url(../img/closeButton_activ.png);
+}
+
+
+
 
 #ArduinoIDE {
 	background-color: #E9E9E9;
@@ -609,4 +670,61 @@ padding: 0;
 
 #ArduinoIDE .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	color: black;
+}
+
+
+#Settings > div {
+	float: left;
+	min-width: 230px;
+	min-height: 500px;
+	margin: 0 8px;
+	background-color: green;
+	
+}
+
+#Settings > div:first-child {
+	min-width: 110px;
+}
+
+#Settings > div:last-child {
+	min-width: 110px;
+}
+
+
+/*/////////////////////////////////////////////////////*/
+/*Code Editor*/
+
+.CodeMirror{
+	min-width: 400px;
+	min-height: 500px;
+}
+
+.cm-s-base16-light.CodeMirror {
+background: white;
+//padding: 10px;
+
+}
+
+.cm-s-default .cm-keyword {
+color: #D96D00;
+}
+
+.cm-s-default .cm-string {
+color: royalblue;
+}
+
+.cm-s-default .cm-atom {
+color: #a11;
+}
+
+
+.CodeMirror-linenumber {
+
+
+text-align: center;
+
+}
+
+.CodeMirror-gutters > div {
+	width:23px !important;
 }

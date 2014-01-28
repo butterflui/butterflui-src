@@ -44,7 +44,7 @@ boolean frame = true;
 int frameFarbe = color(150,150,150);
 
 //min
-boolean minimum =false;
+boolean minimum =true;
 float[] xPosMin = new float[100];
 float zeigerAnzeigeMin;
 float zeigerMin;
@@ -369,9 +369,13 @@ public void draw()
     line(0, -20, 150, -20);
     noStroke();
 
+
+  // wenn slider bewegt wird, wird der Wert Poti mit dem Wert aus dem Array gespeist
    poti = timelapsValue(timelaps,potiMouse);
    
    }else{
+
+  // wenn slider nicht angezeigt wird
     poti = noiseValue();
     timeLapsFill(poti);
 
