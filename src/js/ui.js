@@ -31,6 +31,8 @@ function disableDblClick(elementName) {
 
 
 
+
+
 function ModeSelectListener() {
 	
 	$('#ModeSelect a').click(function(){
