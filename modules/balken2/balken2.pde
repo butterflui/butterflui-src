@@ -75,8 +75,14 @@ float incrementWert = 0.005;
 
 
 
+float printValue() {
+  return poti;
+}
 
 
+void setValue(value){
+  poti = value;
+} 
 
 
 

@@ -4,6 +4,8 @@ var newGraphMenue = new Object();
 newGraphMenue.listen = function() {
 	var that = this;
 	$('#stage').dblclick(function(event) {
+		
+
 	
 	that.set(event);
 	});
@@ -13,7 +15,10 @@ newGraphMenue.listen = function() {
 
 
 newGraphMenue.set = function(e) {
-
+	var startPosition = new Object;
+	startPosition.X = e.pageX;
+	startPosition.Y = e.pageY;
+	
 
 	/////////////////////////////////////////////////////////////////////
 	// Variables and Html Windows
@@ -44,7 +49,7 @@ newGraphMenue.set = function(e) {
 	var GraphView = $('<div class="GraphSelect ListWindow"></div>');
 	var canvasPrev = document.createElement('canvas');
 	var p = Processing.loadSketchFromSources(canvasPrev, ['/modules/balken_prev.pde']);
-	
+
 	canvasPrev.className = "GraphPreview";
 	var GraphViewIn = $('<ul> <li><a href="">Bar Graph</a></li> <li><a href="">Toggle Graph</a></li> <li><a href="">Circle Graph</a></li> <li><a href="">Line Graph</a></li> </ul>');
 	$(canvasPrev).appendTo(GraphView);
@@ -99,7 +104,6 @@ newGraphMenue.set = function(e) {
 					$(ArdView).remove();
 					$(".ListWindowArd").removeClass('active');
 					$('.Arduino input[type=checkbox]').prop('checked', false);
-					console.log($('.Arduino input[type=checkbox]').is(':checked'));
 
 					showGraphView(event,e.pageX+$(GraphMenue).width()+1,e.pageY);
 					toggleWindow2 = 1;
@@ -146,6 +150,19 @@ newGraphMenue.set = function(e) {
 		$("#stage").append(GraphView);
 		$(GraphView).offset({left:positionX, top:positionY});
 
+
+		$('.GraphSelect a').click(function(event) {
+			event.preventDefault();
+			
+			switch ($(this).text()){
+				case "Bar Graph":
+				var Graph = new BarGraph(generateUUID(),false);
+				var id = '#'+Graph.id;
+				$(id).offset({top:startPosition.Y, left:startPosition.X});
+				console.log(startPosition.X +'\n'+startPosition.Y);
+				break;
+			}
+		});
 		closeWindowHandler(GraphView);
 		
 	}

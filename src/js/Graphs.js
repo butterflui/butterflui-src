@@ -1,30 +1,34 @@
-function Graph() {
-	this.threshold = 100;
-	this.max = false;
-	this.min = false;
-	this.name = "Name";
-	this.color = "#fdddff";
-	this.prevsrc = '';
-	this.src = '';
+
+
+function BarGraph(id,prev){
+	var that = this;
+
+	this.canvas = document.createElement('canvas');
+	this.canvas.setAttribute("id", id);
+	this.canvas.setAttribute("class", "GraphCanvas");
+	this.prevsrc = '/modules/balken_prev.pde';
+	this.src = '/modules/balken2/balken2.pde';
+	this.id = id;
+	if (prev){
+		this.pInstance = Processing.loadSketchFromSources(this.canvas, [this.prevsrc]);
+		return this.canvas;
+	}else{
+		this.pInstance = Processing.loadSketchFromSources(this.canvas, [this.src]);
+
+		$('#stage').append(this.canvas);
+	}
+
+	$(this.canvas).bind(that);
+	$(this.canvas).mousedown(function () {
+		var p = Processing.getInstanceById(this.id);
+		p.setValue(800);
+	});
+
+
 }
 
 
-var BarGraph = function (){
-	prevsrc = '/modules/balken_prev.pde';
-	src = '/modules/balken.pde';
-};
-BarGraph.prototype = new Graph();
-BarGraph.threshold = 300;
 
 
-var ToggleGraph = function () {
-	prevsrc = '/modules/balken_prev.pde';
-	src = '/modules/balken.pde';
-};
-ToggleGraph.prototype = new Graph();
 
 
-var CircleGraph = function () {
-	prevsrc = '/modules/balken_prev.pde';
-	src = '/modules/balken.pde';
-};

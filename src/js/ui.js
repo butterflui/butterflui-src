@@ -15,23 +15,23 @@ getUIWindow();
 disableDblClick("#eingabe");
 
 
+// $('#testCanvas').click(function(){
+// 	var p = Processing.getInstanceById($('.testCanvas2').attr('id'));
+// 	p.setValue(800);
+// 	console.log(p.printValue());
+// });
 
+// $('#stage').click(function(){
+// 	BarGraph(generateUUID(),false);
+// });
+// $('#stage').click(
+// function test(){
 
+// 	var hello = new BarGraph();
+// 	hello.loadSketch();
+// 	console.log(hello.id);
 
-function disableDblClick(elementName) {
-	$(elementName).dblclick(function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-	});
-}
-
-
-
-
-
-
-
-
+// });
 
 function ModeSelectListener() {
 	
@@ -68,3 +68,7 @@ function ModeSwitcher (mode) {
 function ModeRead () {
 	return $('#ModeSelect .activ').attr('title');
 }
+
+
+
+

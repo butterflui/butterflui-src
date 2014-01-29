@@ -46,11 +46,11 @@ float generator;
 float startWert = 0.7;
 float incrementWert = 0.005;
 
-void receive(int test){
-  treshold = test;
+
+
+float printValue() {
+  return poti;
 }
-
-
 
 void setup() {
 
