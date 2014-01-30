@@ -24,4 +24,98 @@ function disableDblClick(elementName) {
 	});
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Graph Object
 
+function setActiveGraph(that){
+	activeGraph.id = $(that).attr('id');
+	activeGraph.pInstance = Processing.getInstanceById(activeGraph.id);
+	activeGraph.X = that.pageX;
+	activeGraph.Y = that.pageY;
+	changeActiveGraph();
+
+	
+
+}
+
+function resetActiveGraph(){
+	activeGraph = new Object();
+	changeActiveGraph();
+}
+
+
+function changeActiveGraph() {
+	if (activeGraph.id) {
+		$('.GraphCanvas').addClass('passiv');
+		var id = '#'+activeGraph.id;
+		$(id).removeClass('passiv');
+		
+		
+	}else{
+		$('.GraphCanvas').removeClass('passiv');
+	}
+	
+	
+	
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Mode Select
+
+function setMode (mode) {
+
+
+	if (typeof mode == "object") {
+		var that = mode;
+		$('#ModeSelect a').removeClass('activ');
+		$(that).addClass('activ');
+	}
+
+	if (typeof mode == "string") {
+	switch (mode){
+		case "work":
+		$('#ModeSelect a').removeClass('activ');
+		$('#ModeSelect li:first-child a').addClass('activ');
+		break;
+
+		case "setup":
+		$('#ModeSelect a').removeClass('activ');
+		$('#ModeSelect li:last-child a').addClass('activ');
+		break;
+	}
+	}
+	if(ModeRead()==='setup'){
+		
+		$('.UIWindow').tabs({'active':2});
+		$('.GraphCanvas').addClass('passiv');
+		$('#stage').unbind("click");
+
+
+	if (activeGraph.id) {
+		$('.GraphCanvas').addClass('passiv');
+		var id = '#'+activeGraph.id;
+		$(id).removeClass('passiv');
+	}
+
+	}else{
+		$('.UIWindow').tabs({'active':0});
+		$('.GraphCanvas').removeClass('passiv');
+		resetActiveGraph();
+		$('#stage').bind("click",function () {
+			resetActiveGraph();
+		});
+	}
+}
+
+function ModeRead () {
+	return $('#ModeSelect .activ').attr('title');
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Print to Console
+
+function say (argument) {
+	console.log(argument);
+}

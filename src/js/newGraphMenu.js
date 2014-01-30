@@ -153,15 +153,25 @@ newGraphMenue.set = function(e) {
 
 		$('.GraphSelect a').click(function(event) {
 			event.preventDefault();
+			event.stopPropagation();
+			
+
 			
 			switch ($(this).text()){
 				case "Bar Graph":
 				var Graph = new BarGraph(generateUUID(),false);
 				var id = '#'+Graph.id;
 				$(id).offset({top:startPosition.Y, left:startPosition.X});
-				console.log(startPosition.X +'\n'+startPosition.Y);
+				setActiveGraph($(id));
+				
 				break;
 			}
+
+			setMode('setup');
+			$(GraphMenue).remove();
+			$(ArdView).remove();
+			$(GraphView).remove();
+
 		});
 		closeWindowHandler(GraphView);
 		

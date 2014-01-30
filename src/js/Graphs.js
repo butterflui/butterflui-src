@@ -19,9 +19,11 @@ function BarGraph(id,prev){
 	}
 
 	$(this.canvas).bind(that);
-	$(this.canvas).mousedown(function () {
-		var p = Processing.getInstanceById(this.id);
-		p.setValue(800);
+	disableDblClick(this.canvas);
+	$(this.canvas).click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		setActiveGraph(this);
 	});
 
 
