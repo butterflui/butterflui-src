@@ -1,8 +1,0 @@
-@font-face {
-    font-family: 'UnitThinRegular';
-    src: url('unit-thin.eot');
-    src: url('unit-thin.eot') format('embedded-opentype'),
-         url('unit-thin.woff') format('woff'),
-         url('unit-thin.ttf') format('truetype'),
-         url('unit-thin.svg#UnitThinRegular') format('svg');
-}

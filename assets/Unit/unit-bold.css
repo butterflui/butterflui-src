@@ -1,8 +1,0 @@
-@font-face {
-    font-family: 'UnitBold';
-    src: url('unit-bold.eot');
-    src: url('unit-bold.eot') format('embedded-opentype'),
-         url('unit-bold.woff') format('woff'),
-         url('unit-bold.ttf') format('truetype'),
-         url('unit-bold.svg#UnitBoldRegular') format('svg');
-}
