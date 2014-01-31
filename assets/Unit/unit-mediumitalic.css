@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'UnitMediumItalicRegular';
+    src: url('unit-mediumitalic.eot');
+    src: url('unit-mediumitalic.eot') format('embedded-opentype'),
+         url('unit-mediumitalic.woff') format('woff'),
+         url('unit-mediumitalic.ttf') format('truetype'),
+         url('unit-mediumitalic.svg#UnitMediumItalicRegular') format('svg');
+}
