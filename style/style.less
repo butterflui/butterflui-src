@@ -1,12 +1,13 @@
 @import url("../assets/Unit/unit-light.css");
 @import url("../assets/Unit/unit-regular.css");
+@import url("../assets/Isonorm-Monospaced/isonorm-monospaced.css");
 
 // COLORS
 @background: #30383A;
 @highlight: #C2C2C2;
 @activ: #16777B;
 @font: black;
-@window: #DDDDDD;
+@window: #E9E9E9;
 
 
 
@@ -549,6 +550,10 @@ padding: 0;
 	background-color: @window;
 }
 
+.UIWindow > ul {
+	padding-right: 50px;
+}
+
 .UIWindow li {
 	float: left;
 	color: @font;
@@ -557,7 +562,7 @@ padding: 0;
 
 }
 
-.UIWindow a{
+.UIWindow  a{
 	color: black;
 	text-decoration: none;
 	display: block;
@@ -585,7 +590,8 @@ padding: 0;
 
 .ui-tabs .ui-tabs-nav {
 	padding: 0;
-	margin-right: 50px;
+	border-bottom: 1px solid #B9B9B9;
+	box-shadow: -1px 1px 0px 0px #F6F6F6;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
@@ -639,7 +645,7 @@ padding: 0;
 
 
 #ArduinoIDE {
-	background-color: #E9E9E9;
+	
 }
 
 #ArduinoIDE > div > textarea{
@@ -680,7 +686,8 @@ padding: 0;
 	min-width: 230px;
 	min-height: 500px;
 	margin: 0 8px;
-	background-color: green;
+	padding-top: 20px;
+	
 	
 }
 
@@ -692,6 +699,45 @@ padding: 0;
 	min-width: 110px;
 }
 
+#inspector > ul  {
+	list-style: none;
+}
+
+#inspector > ul > li {
+	float: none;
+	margin: 4px 0;
+}
+
+#inspector input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	float: left;
+
+}
+
+#inspector > ul > li > a{
+	line-height: 20px;
+	display: inline-block;
+	text-align: left;
+	padding: 0 5px;
+	width: 110px;
+	color: black;
+	text-decoration: none;
+
+
+	/* Rectangle 314: */
+
+	border-radius: 2px;
+	/* Rectangle 314: */
+	/* Rectangle 314: */
+	background: #DDDDDD;
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+}
+
 
 /*/////////////////////////////////////////////////////*/
 /*Code Editor*/
@@ -699,7 +745,13 @@ padding: 0;
 .CodeMirror{
 	min-width: 400px;
 	min-height: 500px;
+	
 }
+.CodeMirror *{
+
+}
+
+
 
 .cm-s-base16-light.CodeMirror {
 background: white;

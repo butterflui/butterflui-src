@@ -3,7 +3,7 @@ function getUIWindow() {
 	var UIWindow = $("<div/>", {"class":"UIWindow Window"});
 
 	UIWindow.load('src/html/UIWindow.html', function(){
-		$('.UIWindow').tabs();
+		$('.UIWindow').tabs({"active":2});
 		$('#ArduinoIDE').tabs();
 		$('.UIWindow').draggable();
 		
