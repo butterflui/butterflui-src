@@ -1,8 +1,0 @@
-@font-face {
-    font-family: 'UnitRegularItalicRegular';
-    src: url('unit-regularitalic.eot');
-    src: url('unit-regularitalic.eot') format('embedded-opentype'),
-         url('unit-regularitalic.woff') format('woff'),
-         url('unit-regularitalic.ttf') format('truetype'),
-         url('unit-regularitalic.svg#UnitRegularItalicRegular') format('svg');
-}
