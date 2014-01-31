@@ -48,7 +48,7 @@ newGraphMenue.set = function(e) {
 
 	var GraphView = $('<div class="GraphSelect ListWindow"></div>');
 	var canvasPrev = document.createElement('canvas');
-	var p = Processing.loadSketchFromSources(canvasPrev, ['/modules/balken_prev.pde']);
+	//var p = Processing.loadSketchFromSources(canvasPrev, ['/modules/balken_prev.pde']);
 
 	canvasPrev.className = "GraphPreview";
 	var GraphViewIn = $('<ul> <li><a href="">Bar Graph</a></li> <li><a href="">Toggle Graph</a></li> <li><a href="">Circle Graph</a></li> <li><a href="">Line Graph</a></li> </ul>');
@@ -148,8 +148,20 @@ newGraphMenue.set = function(e) {
 		
 		
 		$("#stage").append(GraphView);
+
 		$(GraphView).offset({left:positionX, top:positionY});
 
+		$('.GraphSelect a').mouseover(function(event) {
+			var type = $(this).text();
+			var pGraph = new Graph(type,generateUUID(),true);
+			$('.GraphSelect > canvas').replaceWith(pGraph);
+
+		});
+
+		$('.GraphSelect a').mouseleave(function(event) {
+			event.stopPropagation();
+			$('.GraphSelect > canvas').replaceWith(canvasPrev);
+		});
 
 		$('.GraphSelect a').click(function(event) {
 			event.preventDefault();
@@ -157,15 +169,12 @@ newGraphMenue.set = function(e) {
 			
 
 			
-			switch ($(this).text()){
-				case "Bar Graph":
-				var Graph = new BarGraph(generateUUID(),false);
-				var id = '#'+Graph.id;
-				$(id).offset({top:startPosition.Y, left:startPosition.X});
-				setActiveGraph($(id));
+			var type = $(this).text();
+			var nGraph = new Graph(type,generateUUID(),false);
+			var id = '#'+nGraph.id;
+			$(id).offset({top:startPosition.Y, left:startPosition.X});
+			setActiveGraph($(id));
 				
-				break;
-			}
 
 			setMode('setup');
 			$(GraphMenue).remove();

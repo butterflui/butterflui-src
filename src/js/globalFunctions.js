@@ -89,7 +89,10 @@ function setMode (mode) {
 		
 		$('.UIWindow').tabs({'active':2});
 		$('.GraphCanvas').addClass('passiv');
-		$('#stage').unbind("click");
+		$('#stage').bind("click",function () {
+			setMode("work");
+		});
+		$('.GraphCanvas').draggable({ disabled: false });
 
 
 	if (activeGraph.id) {
@@ -105,6 +108,7 @@ function setMode (mode) {
 		$('#stage').bind("click",function () {
 			resetActiveGraph();
 		});
+		$('.GraphCanvas').draggable({ disabled: true });
 	}
 }
 
@@ -119,3 +123,11 @@ function ModeRead () {
 function say (argument) {
 	console.log(argument);
 }
+
+
+function animate() {
+	this.rValue = Math.random()*1024;
+
+}
+
+var run = setInterval(animate,10);
