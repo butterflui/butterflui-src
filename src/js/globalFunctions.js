@@ -30,8 +30,10 @@ function disableDblClick(elementName) {
 function setActiveGraph(that){
 	activeGraph.id = $(that).attr('id');
 	activeGraph.pInstance = Processing.getInstanceById(activeGraph.id);
+	
 	activeGraph.X = that.pageX;
-	activeGraph.Y = that.pageY;
+	activeGraph.Y = that.pageY;	
+	getGraphProperties(activeGraph.pInstance);
 	changeActiveGraph();
 
 	
@@ -59,6 +61,28 @@ function changeActiveGraph() {
 	
 }
 
+
+//////////Getter - Setter ///////////////////////
+
+ function getGraphProperties(pInstance) {
+
+	if (pInstance) {
+	activeGraph.properties = {};
+	activeGraph.properties.thres = pInstance.getThres();
+	activeGraph.properties.name = pInstance.getName();
+	activeGraph.properties.min = pInstance.getMin();
+	activeGraph.properties.max = pInstance.getMax();
+	activeGraph.properties.ticks = pInstance.getTicks();
+	activeGraph.properties.scale = pInstance.getScale();
+	say(activeGraph.properties);
+	};
+ }
+
+ function setGraphProperties(pInstance) {
+
+	pInstance.setProperties(activeGraph.properties);
+
+ }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Mode Select

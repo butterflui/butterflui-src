@@ -80,9 +80,9 @@ float incrementWert = 0.005;
 //}
 //
 //
-//void setValue(value){
-//  poti = value;
-//} 
+void setValue(obj){
+ poti = obj.property;
+} 
 
 
 

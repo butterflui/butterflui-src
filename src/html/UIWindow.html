@@ -14,16 +14,56 @@
 		</div>
 		<div id="Variables"></div>
 		<div id="Settings">
+
       <div></div>
-      <div></div>
+      <div id="SettingGraph"><span>Graph</span><canvas id="SettingCanvas"></canvas></div>
       <div id ="inspector">
         <span>Inspector</span>
         <ul>
-          <li><input type="checkbox"><a href="#">Name</a></li>
-          <li><input type="checkbox"><a href="#">Threshold</a></li>
-          <li><input type="checkbox"><a href="#">Range</a></li>
-          <li><input type="checkbox"><a href="#">Minimum</a></li>
-          <li><input type="checkbox"><a href="#">Maximum</a></li>
+          <li>
+            <div>
+              <input type="checkbox" id="name" name="name" value="1"><label for="name"></label>
+          </div>
+          <a href="#">Name</a>
+          <div class="InspectorContent">
+            <input type="text" id="nameInput" value="Name">
+          </div>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" id="thres" name="thres" value="1"><label for="thres"></label>
+          </div>
+          <a href="#">Threshold</a>
+          <div class="InspectorContent"></div>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" id="range" name="range" value="1"><label for="range"></label>
+          </div>
+          <a href="#">Range</a>
+          <div class="InspectorContent"></div>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" id="min" name="min" value="1"><label for="min"></label>
+          </div>
+          <a href="#">Minimum</a>
+          <div class="InspectorContent"></div>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" id="max" name="max" value="1"><label for="max"></label>
+          </div>
+          <a href="#">Maximum</a>
+          <div class="InspectorContent"></div>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" id="dial" name="dial" value="1"><label for="dial"></label>
+          </div>
+          <a href="#">Dial</a>
+          <div class="InspectorContent"></div>
+          </li>
         </ul>
       </div>
     </div>

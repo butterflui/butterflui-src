@@ -25,8 +25,15 @@ function getUIWindow() {
 		});
 
 		$(UIWindow).click(function(event){
-			event.preventDefault();
+			//event.preventDefault();
 			event.stopPropagation();
+		});
+
+		$('#inspector > ul > li > a').click(function(event) {
+			event.stopPropagation();
+			event.preventDefault();
+			var next = $(this).next();
+			$(next).toggleClass('InspectorContentActive');
 		});
 		disableDblClick(UIWindow);
 	});

@@ -1,288 +1,937 @@
-//int a = (int) $('#chance').val();
+
+/*
+BISMILLAH
+Graphical User Interface Library for Physical Computing
+Displaying sensor data and controlling actuators
+design and programming by Fatih Aydemir and Laurens Rinke
+6th semester interaction design - 2013/14
+hochschule für gestaltung schwäbisch gmünd
+*/
 
 
+//speicher
+float[] speicher = new float[100];
+float zeigerAnzeigeSpeicher;
+float [] xPosMinn = new float[100];
+
+int timelapslaenge = 500;
+float[] timelaps = new float[timelapslaenge];
+
+//display
+boolean display = true;
 
 
+//darkening
+int farbeFull = 0;
+int farbeWeg = 5;
 
 //actual values for the barGraph lenght, starting from zero
-float poti;
+float poti; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!! 
+//poti ist die variable, die aus dem arduino kommt. weiter unten im code
+// ist poti mit dem zufallsgenerator gekoppelt.
 
- 
+
+float potiRect;
+
+
 //name of the sensor
-String name;
+String name; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+//das ist die beschreibung die im rahmen ist. momentan übernimmt sie
+//glaub ich mindestens 10 oder 9 buchstaben. unter dieser zahl
+//kommt eine fehlermeldung
+
+
+
+//balken
+float balkenBreite = 150;
+float balkenHoehe = 15;
+
 
 //positioning
-int xpos=25;
-int ypos=45;
+int xpos=3;
+int ypos=10;
+float mousePositionX = mouseX-xpos;
+float mousePositionY = mouseY-ypos;
 
 //frame
+float frameHoehe = 230;
+float frameAbstandSeite = 40;
+float frameAbstandOben = 40;
+float frameBreite = frameAbstandSeite*2+balkenBreite;
+float frameColor = 180;
 boolean frame = true;
-int frameFarbe = color(110,111,111);
+int frameFarbe = color(150, 150, 150);
 
+//PLAY
+boolean play = false;
+boolean pause = true;
+float x;
+float y;
+float xSlider = balkenBreite+frameAbstandSeite;
+float frameHoehePlay = 0;
 
+boolean open = false;
+float incrementOpen = 1;
+
+//min
+boolean minimum =false;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+// mit diesem boolean kann der minimumwert ein oder ausgeschaltet werden
+float[] xPosMin = new float[100];
+float zeigerAnzeigeMin;
+float zeigerMin;
+float minn;
+color minFarbe = color(48, 56, 58); //backgroundfarbe
+//color minFarbe = color(57, 122, 156);
+
+//max
+boolean maximum = false;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+// mit diesem boolean kann der maximumwert ein oder ausgeschaltet werden
+float[] xPosMax = new float[100];
+float maxx;
+color maxFarbe = color(255);
+//color maxFarbe = color(57, 122, 156);
 
 //treshold
-float treshold;
-color tresholdColor = color(123, 50, 34);
+float treshold = 1024;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+// mit diesem wert kann der threshold eingestellt werden
+color tresholdColor = color(166, 47, 25);
+float[] tresMax = new float[200];
+float zeigerAnzeigeTres;
+
 
 //tickMarks
-boolean tickMarks;
+boolean tickMarks = true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+// mit diesem wert können die tickmarks ein oder ausgeblendet werden
 
 //skalen nummern
-boolean skala = true;
-color skalenFarbe = color(150,150,150);
+boolean scale = true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+// mit diesem wert können die skalen nummern ein oder ausgeblendet werden
+color skalenFarbe = color(150, 150, 150);
 
 //farben generell
 color backGround = color(48, 55, 57); //hintergrundfarbe
-color barGraph = color(144, 197, 194);  //aktueller wert als bargraph
-color barGraphGround = color(97, 100, 101);
+color barGraph = color(56, 135, 166);
+color barGraphGround = color(152, 156, 156);
+color textColor = color(255);
+
 
 //text 
 PFont myText;
 PFont myTextBold;
+PFont myTextIcon;
+
 
 //zufallsgenerator
 float generator;
-float startWert = 0.7;
+float startWert = 0.2;
 float incrementWert = 0.005;
 
 
 
 
 
-void setup() {
+///////////////////////////////////////////////////////////////////
+//Input and Output to JavaScript
 
-  // size
-  size(200, 180);
+//getter
+float getValue(){
+  return poti;
+}
+
+float getThres(){
+  return treshold;
+}
+
+String getName(){
+  return name;
+}
+
+boolean getMin(){
+  return minimum;
+}
+
+boolean getMax(){
+  return maximum;
+}
+
+boolean getTicks(){
+  return tickMarks;
+}
+
+boolean getScale(){
+  return scale;
+}
+
+//setter
+
+void setProperties(obj) {
+  name = obj.name;
+  treshold = obj.thres;
+  minimum = obj.min;
+  maximum = obj.max;
+  tickMarks = obj.tickMarks;
+  scale = obj.scale;
+}
+
+void setValue(value) {
+  poti = value;
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+
+void setup() {
+  size(237, 300);
   smooth();
-  // no strokes
   noStroke();
 
-  
-   myText = createFont("unit-light", 14, false);
+  //text set up
+    myTextIcon = createFont("sosa", 14, false);
+
+  myText = createFont("unit-light", 14, false);
   myTextBold = createFont("unit-bold", 13, false);
+
+  //initialisierung + nullsetzen für min array
+  for (int i = 0; i < xPosMin.length; i ++ ) {
+    xPosMin[i] = 0;
+  }
+
+  //initialisierung + nullsetzen für max array
+  for (int i = 0; i < xPosMax.length; i ++ ) {
+    xPosMax[i] = 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+void draw() 
+{
+  //clear background
+  background(backGround);
+  pushMatrix();
+      translate(xpos, ypos);
+      mousePositionX = mouseX-xpos;
+      mousePositionY = mouseY-ypos;
   
+      if(play)
+      {
+      y = frameHoehe;
+      }
+      else
+      {
+      x = frameBreite/2-4;
+      }
+      y = frameHoehe;
+
+  
+  
+      rectMode(CORNER);
+    
+    
+    
+    
+      //BALKEN UNTERGRUND/////////////////////////////////////////////
+      noStroke();
+      fill(barGraphGround);
+      rect(frameAbstandSeite, frameAbstandOben, balkenBreite, balkenHoehe);
+    
+      //BALKEN + TRESHOLD ////////////////////////////////////////////
+    
+      potiRect = map(poti, 0, 1024, 0, 150); // mapping des potiWertes von 1024 auf 150
+    
+    
+        fill(barGraph);  
+      rect(frameAbstandSeite, frameAbstandSeite, potiRect, balkenHoehe);  // aktueller wert als balken dargestellt
+    
+      if (poti >= treshold && treshold >0) { //wenn der schwellwert erreicht ist, 
+        fill(tresholdColor);   //füll die farbe rot
+        farbeFull = 255;
+      }  
+      else 
+      {
+        fill(tresholdColor, farbeFull);
+      }
+      farbeFull = farbeFull - farbeWeg;
+      if (farbeFull < 0) {
+        farbeFull = 0;
+      }
+      //println("pos  "+farbeFull);
+    
+      rect(frameAbstandSeite, frameAbstandSeite, potiRect, balkenHoehe);  // aktueller wert als balken dargestellt
+    
+    
+    
+    
+    
+    
+    
+    strokeWeight(1);
+stroke(90);
+    
+    //BESCHREIBUNGEN//////////////////////////////////////
+  pushMatrix();
+    
+    translate((frameBreite-130)/2, frameAbstandOben+balkenHoehe+46);
+
+    textAlign(LEFT, CENTER);
+
+    rectMode(CENTER);
+
+    int yAbstand = 4;
+    int yAbstandText = 0;
+    int abstandBeschreibung = 17;
+    int abstandAktuell = 115;
+
+  line(-6,13,136,13);
+  line(-6,37,136,37);
+  line(-6,63,136,63);
+
+
+  //int potention1 ///////////////////////////////
+  //rect legende
+  fill(barGraph);
+  noStroke();
+  rect(0, 0, 12, 12);
+
+  //beschreibungstext
+  fill(textColor); 
+  textFont(myText);
+  int potiText = round(poti);
+  text("int potentio1", abstandBeschreibung, 0);
+
+  //realtime
+  textFont(myTextBold);
+  text(potiText, abstandAktuell, 0); 
+
+  //tres potentio1  ///////////////////////////////
+  //rect lengende
+  textFont(myTextBold);
+  int tresText = round(treshold); 
+  fill(tresholdColor); 
+  noStroke();
+  rect(0, 25, 12, 12);
+
+  //beschreibungstext
+  fill(textColor);
+  textFont(myText);
+  text("thres potentio1", abstandBeschreibung, 25);
+
+
+  //realtime
+  fill(textColor);
+  textFont(myTextBold);
+  text(tresText, abstandAktuell, 25 ); // display des treshold
+
+  //min potentio1   ///////////////////////////////
+  //rect lengende
+  int minText = round(minn); 
+  fill(minFarbe);
+  strokeWeight(1);
+  stroke(frameColor); 
+  rect(0, 50, 12, 12);
+
+  //beschreibung
+  fill(textColor);
+  textFont(myText);
+  text("min potentio1", abstandBeschreibung, 50);
+
+  //realtime
+  textFont(myTextBold);
+  stroke(frameColor); 
+  text(minText, abstandAktuell, 50); 
+
+
+  //max potentio1    ///////////////////////////////
+  //rect lengende
+  fill(maxFarbe); 
+  noStroke();
+  rect(0, 75, 12, 12);
+
+  //beschreibung
+  fill(textColor);
+  stroke(frameColor);
+  textFont(myText);
+  text("max potentio1", abstandBeschreibung, 75);
+
+  //realtime
+  int maxText = round(maxx); 
+  textFont(myTextBold);
+  text(maxText, abstandAktuell, 75);
+  
+  rectMode(CORNER);
+popMatrix();
+
+
+  
+
+    
+    //MINIMIZE/////////////////////////////////////////////////
+   
+  //hover setting rect
+  color setColorRectDisplay = color(255,0);
+  color setColorSymbolDisplay = (int)frameColor;
+
+  if (dist(frameBreite-60, 12, mousePositionX, mousePositionY) < 15)
+  { 
+         setColorRectDisplay = color(255,20); 
+         setColorSymbolDisplay = color(255,180);     
+    
+
+     if(mousePressed)
+     {
+       setColorSymbolDisplay = 255;
+     }
+  }
+  noStroke();
+  fill(setColorRectDisplay);
+  rectMode(CENTER);
+  rect(frameBreite-60, 14, 18, 18);
+
+  //symbol minimalize
+  fill(setColorSymbolDisplay);
+
+  if(display){
+  rect(frameBreite-60,14,10,2);
+  }
+  else
+  {
+   noStroke();
+   fill(setColorSymbolDisplay);
+   rect(frameBreite-60,15,10,10,1);
+   fill(backGround);
+   rect(frameBreite-60,15,6,6,1);
+  }
+ 
+             
+             
+           //ansicht closed + play open
+             if(!display && play)
+            {    // 8 ist wirksam wenn display closed ist und runter fährt
+                  // 8 ist wirksam wenn play open ist und display geclosed wird
+                for(int i=0; i<8; i++)
+                {
+                  frameHoehe = frameHoehe + incrementOpen * -1;;
+                    if (frameHoehe < balkenHoehe+frameAbstandOben*2+40)
+                    {
+                     frameHoehe = balkenHoehe+ frameAbstandOben*2+40;
+                    }
+                }
+            }
+            
+            //ansicht open + play open
+            else if(display && play)
+            {  //ist wirksam wenn display open ist und play aufgemacht wird
+                for(int i=0; i<3; i++)
+                {
+                  frameHoehe = frameHoehe + incrementOpen;
+            
+                  if (frameHoehe >= 270)
+                  {
+                   frameHoehe = 270;
+                  }
+                 }
+            }
+            
+    
+             //ansicht closed + play closed
+            else if(!display && !play)
+            {  
+                for(int i=0; i<10; i++)
+                {
+                  frameHoehe = frameHoehe + incrementOpen;
+            
+                  if (frameHoehe >= 108)
+                  {
+                   frameHoehe = 108;
+                  }
+                 }
+            }
+            
+            
+             //ansicht closed + play closed
+            else if(display && !play)
+            {  
+                for(int i=0; i<10; i++)
+                {
+                  frameHoehe = frameHoehe + incrementOpen;
+            
+                  if (frameHoehe >= 230)
+                  {
+                   frameHoehe = 230;
+                  }
+                 }
+            }
+    
+         
+           
+          
+            //FRAME//////////////////////////////////////////
+            //verschluss
+            noStroke();
+            fill(backGround);
+            rectMode(CORNER); 
+            rect(0, frameHoehe-40, frameBreite, 200);     
+
+            //frame/////////////////
+            noFill();
+            stroke(91, 101, 101); //farbe des Frame
+            strokeWeight(1);
+            rectMode(CORNER);
+            
+            rect(0, 0, frameBreite, frameHoehe, 3);
 
  
+    
+    
+    
+    
+    
+    
+    
+    
+      //FRAME//////////////////////////////////////////////
+      //rahmen
+      noFill();
+      stroke(91, 101, 101); //farbe des frame
+      strokeWeight(1);
+      rect(0, 0, frameAbstandSeite*2+balkenBreite, frameHoehe, 2);
+    
+      // untergrund für beschreibung
+      fill(backGround); 
+      noStroke();
+      rect(24, 0, 80, 20); 
+    
+      //sensor beschreibung
+      name = "potentiometer"; 
+      //name = (String) $('#name').val();
+      String ss3 = name.substring(0, 9);  // Returns "CC"
+      //println(ss3); 
+      fill(frameFarbe);
+      textAlign(LEFT,CENTER);
+      textFont(myText, 15);
+      text(ss3, 34, 0);
+    
+    
+   
+     
+    
+    
+    
+    
+    
+    //settings/////////////////////////////////////////////////////
+  //hover setting rect
+  color setColorRect = color(255,0);
+  color setColorSymbol = (int)frameColor;
+
+  if (dist(frameBreite-40, 12, mousePositionX, mousePositionY) < 15)
+  { 
+         setColorRect = color(255,20); 
+         setColorSymbol = color(255,180);     
+    
+
+     if(mousePressed)
+     {
+       setColorSymbol = 255;
+     }
+  }
+ 
+  fill(setColorRect);
+  rectMode(CENTER);
+  rect(frameBreite-40, 14, 18, 18);
+
+  //symbol setting
+  fill(setColorSymbol);
+//  textAlign(CENTER, CENTER);
+//  textFont(myTextIcon, 13);
+//  text("W", frameBreite-40, 12);
+  rectMode(CORNER);
+  rect(0+frameBreite-46,0+10,2,10);
+  rect(-1+frameBreite-46,3+10,4,2);
   
-}
-
-
-
-void draw() {
-
-  // clear background
-  background(0,0);
-
-  translate(xpos, ypos);
-
-//BALKEN-UNTERGRUND//////////////////////////////////////////////
-  //untergrund
-  noStroke();
-  fill(barGraphGround);
-  int breite = 150;
-  rect(0, 0, breite, 15,2);
-  //rect(width/2-75,height/2,150,15);
+  rect(5+frameBreite-46,0+10,2,10);
+  rect(4+frameBreite-46,5+10,4,2);
   
+  rect(10+frameBreite-46,0+10,2,10);
+  rect(9+frameBreite-46,2+10,4,2);
   
-//TRESHOLD + BALKEN//////////////////////////////////////////////
-  if (poti >= treshold && treshold >0) { //wenn der schwellwert erreicht ist, 
-    fill(tresholdColor);
-  }  //dann gib die farbe rot
-  else {
-    fill(barGraph);
-  } //sonst blau
-  rect(0, 0, poti*1.5, 15,2);
+  //hover close window////////////////////////////////////
+  color setColorRect2 = color(255,0);
+  color setColorSymbol2 = (int)frameColor;
+
+  if (dist(frameBreite-20, 12, mousePositionX, mousePositionY) < 15)
+  { 
+         setColorRect2 = color(255,20); 
+         setColorSymbol2 = color(255,180);     
+    
+
+     if(mousePressed)
+     {
+       setColorSymbol2 = 255;
+     }
+  }
+ 
+  fill(setColorRect2);
+  rectMode(CENTER);
+  rect(frameBreite-20, 14, 18, 18);
+
+  //symbol close
+  fill(setColorSymbol2);
+  textAlign(CENTER, CENTER);
+  textFont(myTextIcon, 13);  
+  text("ã", frameBreite-20, 12);
   
-
-
-
-//BESCHREIBUNGEN//////////////////////////////////////
-  //aktueller wert
-  pushMatrix();
-    translate(12,70);
-    textFont(myTextBold);
-    int potiText = round(poti);
-    fill(barGraph); //farbe kleines k�stchen
-    noStroke();
-    rect(0,-12,12,12); //kleines k�stchen
-    fill(255); //farbe text aktueller wert
-    stroke(120,130,130); //farbe des frame
-    textAlign(LEFT);
-    text(potiText, 110, 0); //display den aktuellen wert als zahl
-    textFont(myText);
-    text("int potentio1",20,0); // beschreibung
-  popMatrix();
+ 
   
   
   
   
   
-  //treshold wert
-  pushMatrix();
-    translate(12,90);
-    textFont(myTextBold);
-    treshold = (int) $('#treshold').val();
-    int tresText = round(treshold); //aufrunden des treshold
-    fill(tresholdColor); // farbe des treshold
-    noStroke();
-    rect(0,-12,12,12);
-    fill(255);
-    stroke(120,130,130); //farbe des frame
-    textAlign(LEFT);
-    text(tresText, 110, 0); // display des treshold
-    textFont(myText);
-    text("tres potentio1",20,0);
-  popMatrix();
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
-
-
-
-//FRAME//////////////////////////////////////////////
-  noFill();
-  stroke(91,101,101); //farbe des frame
+  ////play/////////////////////////////
+  //frame ellipse
   strokeWeight(1);
-  int breiteFrame = 190;
-  rect((breite-breiteFrame)/2,-40,breiteFrame,160,3);
+  stroke(frameColor);
+  fill(backGround);
+  ellipseMode(CENTER);
+  ellipse(frameBreite/2, frameHoehe, 30, 30);
 
-  //sensor beschreibung
-  fill(frameFarbe);
-  textAlign(RIGHT);
-  textFont(myText,15);
-  fill(backGround); // untergrund f�r text
+
   noStroke();
-  rect(10,120,42,20); // untergrund f�r text
-  fill(frameFarbe);
+  fill(255, 20);
+  ellipse(mousePositionX, mousePositionY, 10, 10);
 
-  name = (String) $('#name').val();
-
-  text(name, 48, 125);
-  
-
-
-
-
-
-  tickMarks = (boolean) $('#tick').prop('checked');
-
-    //println("tickMarks      "+tickMarks);
-
-
- //tickMarks = (boolean) $('#remember').val();
-//TICK MARKS//////////////////////////////////////////////
-  if (tickMarks) 
+  //hover
+  if (dist(x, y, mousePositionX, mousePositionY) < 15) 
   {
-    pushMatrix();
-      translate(0, 16);
-      for (int i=0; i<11; i++)
-      {
-        fill(frameFarbe);
-        strokeWeight(0);
-        rect(0+i*15, 0, 1, 1);
-      }
-  
-      for (int i=0; i<6; i++)
-      {
-        fill(frameFarbe);
-        strokeWeight(0);
-        rect(0+i*30, 0, 1, 2);
-      }
-    popMatrix();
+    fill(255, 20);
+    ellipse(frameBreite/2, frameHoehe, 30, 30);
   }
 
-
-
-
-
-skala = (boolean) $('#scaleNumber').prop('checked');
-//SKALA NUMMERIERUNG//////////////////////////////////////////////
-  if (skala) {
-    for (int i=0; i<6; i++)
-    {
-      fill(skalenFarbe);
-      int value = 0;
-      value = value +i*20;
-      //println(value);
-      textAlign(CENTER);
-      textFont(myText, 9);
-      text(value, i*30, 30);
-    }
-  }
-
-
-
-//TRESHOLD///////////////////////////////////////////////
-  //markierung wird angezeigt nur dann wenn treshold >0
-  if (treshold > 0)
-  {
-    pushMatrix();
-    fill(tresholdColor);
-    noStroke();
-    translate(treshold*1.5, -2);
+  //interaction
+  if (play) {
+    //play button
+        fill(255);
     beginShape();
-    vertex(0, 0);
-    vertex(-5, -8);
-    vertex(5, -8);
+    vertex(frameBreite/2-3, -7+frameHoehe);
+    vertex(10+frameBreite/2-3, frameHoehe);
+    vertex(frameBreite/2-3, 7+frameHoehe);
     endShape();
-    popMatrix();
+
+    //slider line
+    strokeWeight(1);
+    stroke(frameColor);
+    line(balkenBreite/2-frameAbstandSeite, frameHoehe-40, balkenBreite+frameAbstandSeite, frameHoehe-40);
+
+
+
+    //slider Ellipse
+    if (mousePressed && dist(xSlider, frameHoehe-40, mousePositionX, mousePositionY) < 15)
+    {
+
+      xSlider = mousePositionX;
+    }
+    noStroke();
+    xSlider = constrain(xSlider, frameAbstandSeite, balkenBreite+frameAbstandSeite);
+    ellipse(xSlider, frameHoehe-40, 12, 12);
   }
-  
-  
-//ZUFALLSGENERATOR/////////////////////////////////////////////////////
-    generator =(noise(startWert+= incrementWert)*100);
-    //println(generator);
-    poti = generator;
-  
+
+  else
+  {
+    //pause symbol
+    rectMode(CENTER);  
+    fill(frameColor);
+    rect(frameBreite/2-4, frameHoehe, 4, 14, 1);
+    rect(frameBreite/2+5, frameHoehe, 4, 14, 1);
+
+    //slider position zurücksetzen
+    xSlider = balkenBreite+frameAbstandSeite;
+  }
+
+
+
     
-//COLORPICKER/////////////////////////////////////////////////////////////
-    // String farbe  = (String) $('#picker').val();
-    // println("farbe   " + farbe);
-    // if (farbe == "00FF00")
-    // {
-    //   barGraph = color(255,0,0);
-
-    // }else{
-
-
-    // }
-
-
-
-
-    // int zufall = (String) $('#picker').val();
-    // switch(zufall)
-    // {
     
-    //   case "90C5C2":
-    //   fill(255,0,0); break;
-      
-    //   case "37C700":
-    //   fill(0,255,0); break;
-      
-    //   case "1BE300":
-    //   fill(0,0,255); break;
-      
-    //   case "00FF00":
-    //   fill(255,255,0); break;
-    //  }
     
-    // rect(0,0,100,100);
+    
+    
+    
+    
+    
+    
+      //TICK MARKS SETZEN//////////////////////////////////////////////
+      //tickMarks = (boolean) $('#tick').prop('checked');
+    
+      if (tickMarks) 
+      {  
+            //translate(frameAbstandSeite, 0); // tickmarks an die richtige stelle verschieben
+            //kleine Tickmarks
+            for (int i=0; i<11; i++) // anzahl tickmarks
+            {
+              pushMatrix();
+              translate(frameAbstandSeite, 16); // tickmarks an die richtige stelle verschieben
 
+              fill(frameFarbe);  // farbe der tickmarks
+              noStroke();    //keine kontur
+              rect(i*15, frameAbstandSeite, 1, 1); // tickmarks setzen
+              popMatrix();
+            }
+        
+            
+            //große Tickmarks
+            for (int i=0; i<6; i++)
+            {
+              pushMatrix();
+                translate(frameAbstandSeite, 16);
+                fill(frameFarbe);
+                noStroke();
+                rect(0+i*30, frameAbstandOben, 1, 3);
+              popMatrix();
+            }
 
+      }
+    
+    
+      //NUMMERIERUNG DER TICKMARKS//////////////////////////////////////////////
+      if (scale) {
 
-
+        for (int i=0; i<3; i++) // 3 zahlen
+        {
+          pushMatrix();
+            translate(frameAbstandSeite, balkenHoehe+2);
   
+            fill(255); // farbe der zahlen
+            int value = 0;     //startpunkt für zahlen
+            value = value +i*512;  //zahlenabstand als bereich
+            //println(value);
+            textAlign(CENTER, CENTER);
+            textFont(myText, 10);
+            text(value, i*75, 10+frameAbstandOben); // zahlen setzen + abstand
+          popMatrix();
+        }
+      }
+    
+    
+    
+      //TRESHOLD///////////////////////////////////////////////
+      //markierung wird angezeigt nur dann wenn treshold >0
+      if (treshold > 0)
+      {
+
+        fill(tresholdColor);
+        noStroke();
+        float tresholdAnzeige = map(treshold, 0, 1024, 0, 150);
+    
+        if (poti >= treshold)
+        {
+          stroke(255);
+        }
+        beginShape();
+        vertex(0+tresholdAnzeige+frameAbstandSeite, frameAbstandOben+12);
+        vertex(-5+tresholdAnzeige+frameAbstandSeite, -8+frameAbstandOben+12);
+        vertex(5+tresholdAnzeige+frameAbstandSeite, -8+frameAbstandOben+12);
+        endShape(CLOSE);
+    
+    
+        for (int i = 0; i < tresMax.length-1; i ++ ) 
+        {
+          tresMax[i] = tresMax[i+1];
+        }
+    
+        // New location
+        tresMax[tresMax.length-1] =  poti;
+    
+    
+        float tress = max(tresMax);
+        // println("minn  "+ minn);
+    
+        //zeiger min
+        noStroke();
+    
+        zeigerAnzeigeTres = tress;
+    
+        if (treshold >0 && zeigerAnzeigeTres>treshold) {
+          zeigerAnzeigeTres = map(tress, 0, 1024, 0, 150);
+          rectMode(CORNER);
+          rect(zeigerAnzeigeTres+frameAbstandSeite, frameAbstandOben, 2, 15);
+        }
+    
+    
+    
+    
+    
+    
+        //MIN VALUE///////////////////////////////////////////////
+        if (minimum) {
+          // Shift all elements down one spot. 
+          // xpos[0] = xpos[1], xpos[1] = xpos = [2], and so on. Stop at the second to last element.
+          for (int i = 0; i < xPosMin.length-1; i ++ ) 
+          {
+            xPosMin[i] = xPosMin[i+1];
+          }
+    
+          // New location
+          xPosMin[xPosMin.length-1] =  poti;
+    
+    
+          minn = min(xPosMin);
+          // println("minn  "+ minn);
+    
+          //zeiger min
+          fill(minFarbe);
+    
+          noStroke();
+    
+          zeigerAnzeigeMin = map(minn, 0, 1024, 0, 150);
+    
+    
+    
+          beginShape();
+          vertex(zeigerAnzeigeMin+frameAbstandSeite, 0+frameAbstandOben+12);
+          vertex(zeigerAnzeigeMin-5+frameAbstandSeite, -8+frameAbstandOben+12);
+          vertex(zeigerAnzeigeMin+5+frameAbstandSeite, -8+frameAbstandOben+12);
+          endShape();
+        }
+    
+    
+        //MAX/////////////////////////////////////////////
+        if (maximum) {
+    
+          // Shift all elements down one spot. 
+          // xpos[0] = xpos[1], xpos[1] = xpos = [2], and so on. Stop at the second to last element.
+          for (int i = 0; i < xPosMax.length-1; i ++ ) 
+          {
+            xPosMax[i] = xPosMax[i+1];
+          }
+    
+          // New location
+          xPosMax[xPosMax.length-1] = poti; // Update the last spot in the array with the mouse location.
+    
+    
+    
+          maxx = max(xPosMax);
+          //zeiger max
+          fill(maxFarbe);
+          noStroke();
+          //translate(0, 12);
+          float zeigerAnzeigeMax = map(maxx, 0, 1024, 0, 150);
+    
+          beginShape();
+          vertex(zeigerAnzeigeMax+frameAbstandSeite, 0+frameAbstandOben+12);
+          vertex(zeigerAnzeigeMax-5+frameAbstandSeite, -8+frameAbstandOben+12);
+          vertex(zeigerAnzeigeMax+5+frameAbstandSeite, -8+frameAbstandOben+12);
+          endShape();
+        }
+      }
+
+  popMatrix(); 
+  //ZUFALLSGENERATOR/////////////////////////////////////////////////////
+  generator =(noise(startWert+= incrementWert));
+  generator = map(generator, 0, 1, 0, 1024);
+  //println("generator   "+generator);
+  poti = generator;
+  
+  
+  
+  
+   
+   if(mousePressed)
+   {
+   
+   fill(255);
+   float potiMouse = mouseX-xpos; //ersetzen des generators durch mousex + xpos anpassung
+    potiMouse = constrain(potiMouse, 0, 150);
+   
+   
+   ellipse(potiMouse, -20, 10, 10);
+    stroke(255);
+    line(0, -20, 150, -20);
+    noStroke();
+
+
+  // wenn slider bewegt wird, wird der Wert Poti mit dem Wert aus dem Array gespeist
+   poti = timelapsValue(timelaps,potiMouse);
+   
+   }else{
+
+  // wenn slider nicht angezeigt wird
+    poti = noiseValue();
+    timeLapsFill(poti);
+
+   }
+    
+}
+
+
+void mousePressed()
+{
+  if (dist(x, y, mousePositionX, mousePositionY) < 15)
+  {
+    play = !play;
+  } 
+  
+  if (dist(frameBreite-60, 12, mousePositionX, mousePositionY) < 15)
+  {
+         display = !display;
+  
+  } 
 }
 
 
 
+   
+void timeLapsFill(float sensorValue){
+
+  for (int i=1; i<timelaps.length;i++) {
+    timelaps[i-1] = timelaps[i];
+  }
+
+  timelaps[timelapslaenge-1] = sensorValue;
+
+
+}
+
+float noiseValue(){
+  //ZUFALLSGENERATOR/////////////////////////////////////////////////////
+    generator =(noise(startWert+= incrementWert));
+    generator = map(generator,0,1,0,1024);
+        //println("generator   "+generator);
+        return generator;
+}
+
+float timelapsValue(float[] timelapsArr, float sliderValue) {
+  int ArrPosition = int(map(sliderValue, 0, 150, 0 , timelapsArr.length-1));
+  return timelapsArr[ArrPosition];
 
 
 
 
 
 
+}
+ 
 
 
 

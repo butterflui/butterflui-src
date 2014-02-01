@@ -173,7 +173,11 @@ newGraphMenue.set = function(e) {
 			var nGraph = new Graph(type,generateUUID(),false);
 			var id = '#'+nGraph.id;
 			$(id).offset({top:startPosition.Y, left:startPosition.X});
-			setActiveGraph($(id));
+			var el = document.getElementById(nGraph.id);
+			var t = setTimeout(function() {
+				setActiveGraph(el);
+				say(Processing.getInstanceById(nGraph.id));
+			},30);
 				
 
 			setMode('setup');

@@ -699,8 +699,41 @@ padding: 0;
 	min-width: 110px;
 }
 
+
+
+#SettingGraph span {
+
+	display: block;
+	padding-bottom: 6px;
+}
+
+#SettingCanvas {
+	border-radius: 2px;
+	background: #30383A;
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 1px 0px 0px #E9E9E9, inset 0px 2px 0px 0px #191E20;
+	-webkit-box-shadow: 0px 1px 0px 0px #E9E9E9, inset 0px 2px 0px 0px #191E20;
+	box-shadow:         0px 1px 0px 0px #E9E9E9, inset 0px 2px 0px 0px #191E20;
+}
+
+
+
+
+#inspector span {
+
+	display: block;
+	padding-left: 25px;
+	padding-bottom: 2px;
+}
 #inspector > ul  {
 	list-style: none;
+}
+
+#inspector ul li > div:first-child{
+	display: inline-block;
+	float: left;
+	position: relative;
+	padding-right: 5px;
 }
 
 #inspector > ul > li {
@@ -711,9 +744,52 @@ padding: 0;
 #inspector input[type=checkbox] {
 	width: 20px;
 	height: 20px;
-	display: inline-block;
-	float: left;
+	visibility: hidden;
+	display: block;
 
+}
+
+#inspector label{
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	/* Rectangle 314: */
+
+border-radius: 2px;
+background: #F6F6F6;
+border: 1px solid #CDCDCD;
+-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+
+}
+
+#inspector label:after {
+	opacity: 1;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	content: '';
+	background-image: url("../img/checkbox_haken_unchecked.png");
+	position: absolute;
+	
+}
+
+#inspector label:hover::after {
+	opacity: 1;
+	border: none;
+	background-image: url("../img/checkbox_haken_unchecked.png");
+}
+
+#inspector input[type=checkbox]:checked + label:after {
+	opacity: 1;
+	
+	background-image: url("../img/checkbox_haken_checked.png");
 }
 
 #inspector > ul > li > a{
@@ -721,7 +797,7 @@ padding: 0;
 	display: inline-block;
 	text-align: left;
 	padding: 0 5px;
-	width: 110px;
+	width: 100px;
 	color: black;
 	text-decoration: none;
 
@@ -733,12 +809,42 @@ padding: 0;
 	/* Rectangle 314: */
 	background: #DDDDDD;
 	border: 1px solid #B9B9B9;
-	-moz-box-shadow:    0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-	-webkit-box-shadow: 0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
-	box-shadow:         0px 2px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-moz-box-shadow:    0px 0px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 0px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 0px 0px 0px #E9E9E9, inset 0px 1px 0px 0px #E9E9E9;
 }
 
 
+
+
+.InspectorContent {
+	display: none;
+	width: 110px;
+	margin: -1px 0 0 auto;	
+	background: #F6F6F6;
+
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: 1px solid #B9B9B9;
+	-moz-box-shadow:    0px 1px 0px 0px #E9E9E9;
+	-webkit-box-shadow: 0px 1px 0px 0px #E9E9E9;
+	box-shadow:         0px 1px 0px 0px #E9E9E9;
+	transition: height 1s;
+	-webkit-transition: height 1s;
+}
+
+.InspectorContentActive {
+	display: block;
+}
+
+
+#nameInput{
+
+	margin: 10px 5px;
+	width: 95px;
+
+    outline: none;
+} 
 /*/////////////////////////////////////////////////////*/
 /*Code Editor*/
 
@@ -796,4 +902,13 @@ text-align: center;
 
 .test {
 	opacity: 1;
+}
+
+#testInput {
+	position: absolute;
+	top: 200px;
+	right: 200px;
+	width: 60px;
+	height: 60px;
+	background-color: grey;
 }
