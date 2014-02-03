@@ -17,7 +17,7 @@ PFont myTextIcon;
 
 
 //name of the sensor
-String name;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+String name = "motorsteuerung";//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 //das ist die beschreibung die im rahmen ist. momentan übernimmt sie
 //glaub ich mindestens 10 oder 9 buchstaben. unter dieser zahl
 //kommt eine fehlermeldung
@@ -55,6 +55,62 @@ int poti;
 int generator;
 
 
+
+
+///////////////////////////////////////////////////////////////////
+//Input and Output to JavaScript
+
+//getter
+float getValue(){
+  return poti;
+}
+
+float getThres(){
+  return 0;
+}
+
+
+String getName(){
+  return name;
+}
+
+boolean getMin(){
+  return false;
+}
+
+boolean getMax(){
+  return false;
+}
+
+boolean getTicks(){
+  return false;
+}
+
+boolean getScale(){
+  return false;
+}
+
+//setter
+
+void setProperties(obj) {
+  name = obj.name;
+}
+
+void setValue(value) {
+  poti = value;
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
 void setup() {
 
   // size
@@ -63,8 +119,8 @@ void setup() {
   smooth();
     myTextIcon = createFont("sosa", 14, false);
 
-   myText = createFont("unit-light", 14, false);
-  myTextBold = createFont("unit-bold", 13, false);
+   myText = createFont("unit-thin", 14, false);
+  myTextBold = createFont("unit-medium", 13, false);
   
 
 }
@@ -110,7 +166,7 @@ void draw() {
         rect(frameBreite/2,frameHoehe,53,20); 
       
         //sensor beschreibung
-        name = "motorsteuerung";
+        
         String ss3 = name.substring(0, 5);  // Returns "CC"
         fill(frameFarbe);
         textAlign(CENTER,CENTER);
@@ -186,10 +242,18 @@ void draw() {
 
   //symbol close
   fill(setColorSymbol2);
-  textAlign(CENTER, CENTER);
-  textFont(myTextIcon, 13);  
-  text("ã", frameBreite-15, 12);
+//  textAlign(CENTER, CENTER);
+//  textFont(myTextIcon, 13);  
+//  text("ã", frameBreite-20, 12);
   
+  pushMatrix();
+    translate(frameBreite-20, 14);
+    rotate(radians(45));
+    rect(0, 0,2,12);
+    rotate(radians(-90));
+    rect(0, 0,2,12);
+  popMatrix();
+ 
   
    popMatrix();
    

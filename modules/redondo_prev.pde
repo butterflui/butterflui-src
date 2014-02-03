@@ -89,10 +89,10 @@ void draw() {
   //BALKEN + TRESHOLD22222222222//////////////////////////////////////////////
   noFill();
   strokeWeight(13);
-  println("davor    "+poti2);
+  //println("davor    "+poti2);
   float grad2 = map(poti2, 0, 1024, 0, 360);
 
-  println("danach    "+grad2);
+  //println("danach    "+grad2);
   stroke(barGraph);
   //println("graaaaaad  "+grad);
   strokeCap(SQUARE);

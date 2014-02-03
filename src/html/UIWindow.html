@@ -14,55 +14,147 @@
 		</div>
 		<div id="Variables"></div>
 		<div id="Settings">
-
-      <div></div>
-      <div id="SettingGraph"><span>Graph</span><canvas id="SettingCanvas"></canvas></div>
+      <span id="settingsHelp">Select a Graph to continue</span>
+      <div id="SettingsVariables">
+        <span>Variables</span>
+        <ul>
+          <li>
+            <div class="SettingsColor"></div>
+            <a href="#" class="SettingsVarSelect">int example</a>
+          </li>
+        </ul>
+      </div>
+      <div id="SettingGraph">
+        <span>Graph</span>
+        <canvas id="SettingCanvas"></canvas>
+      </div>
       <div id ="inspector">
         <span>Inspector</span>
         <ul>
           <li>
+            <!--  Name  -->
             <div>
-              <input type="checkbox" id="name" name="name" value="1"><label for="name"></label>
+              <input type="checkbox" class="InspectorCheckbox" id="name" name="name" value="1"checked><label for="name"></label>
           </div>
           <a href="#">Name</a>
           <div class="InspectorContent">
-            <input type="text" id="nameInput" value="Name">
+            <input type="text" id="nameInput" name="nameInput" value="Name">
           </div>
           </li>
           <li>
+            <!--  Threshold  -->
             <div>
-              <input type="checkbox" id="thres" name="thres" value="1"><label for="thres"></label>
+              <input type="checkbox" id="thres" class="InspectorCheckbox" name="thres" value="1" checked><label for="thres"></label>
           </div>
           <a href="#">Threshold</a>
-          <div class="InspectorContent"></div>
+          <div class="InspectorContent">
+            <ul>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="thresVal" name="thres" value="thresVal" checked>
+                <label for="thresVal"></label>
+              </div>
+                <span>Value:</span>
+                <input type="text" id="thresValInput" name="thresInput" value="1024">
+              </li>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="thresVar" name="thres" value="thresVar">
+                <label for="thresVar"></label>
+                </div>
+                <a href="#" class="InspectorVariable">Variable</a>
+              </li>
+             
+            </ul>
+          </div>
           </li>
           <li>
+
+            <!--  Range  -->
             <div>
-              <input type="checkbox" id="range" name="range" value="1"><label for="range"></label>
+              <input type="checkbox" id="range" class="InspectorCheckbox" name="range" value="1" checked><label for="range" ></label>
           </div>
           <a href="#">Range</a>
-          <div class="InspectorContent"></div>
+          <div class="InspectorContent">
+            <ul>
+              <li><div>
+                <input type="radio" class="InspectorContentCheckbox" id="rangePre" name="range" value="rangePre" checked>
+                <label for="rangePre"></label>
+              </div>
+              <span>0 - 1024</span>
+              
+            </li>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="rangeMan" name="range" value="rangeMan" >
+                <label for="rangeMan"></label>
+                </div>
+                <input type="text" id="rangeMin" value="0">&nbsp;-
+              <input type="text" id="rangeMax" value="1024">
+              
+              </li>
+            </ul>
+          </div>
           </li>
           <li>
+            <!--  Minimum  -->
             <div>
-              <input type="checkbox" id="min" name="min" value="1"><label for="min"></label>
+              <input type="checkbox" id="min" class="InspectorCheckbox" name="min" value="1"><label for="min"></label>
           </div>
           <a href="#">Minimum</a>
-          <div class="InspectorContent"></div>
+          <div class="InspectorContent">
+            <ul>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="minTime" name="min" value="minTime" checked>
+                <label for="minTime"></label>
+              </div>
+                <span>Time:</span>
+                <input type="text" id="minTimeInput" value="3s">
+              </li>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="minEndless" name="min" value="minEndless">
+                <label for="minEndless"></label>
+              </div>
+                <span>Endless</span>
+              </li>
+            </ul>
+          </div>
           </li>
           <li>
+            <!--  Maximum  -->
             <div>
-              <input type="checkbox" id="max" name="max" value="1"><label for="max"></label>
+              <input type="checkbox" id="max" class="InspectorCheckbox" name="max" value="1"><label for="max"></label>
           </div>
           <a href="#">Maximum</a>
-          <div class="InspectorContent"></div>
+          <div class="InspectorContent">
+            <ul>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="maxTime" name="max" value="maxTime" checked>
+                <label for="maxTime"></label>
+              </div>
+                <span>Time:</span>
+                <input type="text" id="maxTimeInput" value="3s">
+              </li>
+              <li>
+                <div>
+                <input type="radio" class="InspectorContentCheckbox" id="maxEndless" name="max" value="maxEndless">
+                <label for="maxEndless"></label>
+              </div>
+                <span>Endless</span>
+              </li>
+            </ul>
+          </div>
           </li>
           <li>
+            <!--  Dial  -->
             <div>
-              <input type="checkbox" id="dial" name="dial" value="1"><label for="dial"></label>
+              <input type="checkbox" id="dial" class="InspectorCheckbox" name="dial" value="1"><label for="dial"></label>
           </div>
           <a href="#">Dial</a>
-          <div class="InspectorContent"></div>
+          <!--<div class="InspectorContent"></div>-->
           </li>
         </ul>
       </div>

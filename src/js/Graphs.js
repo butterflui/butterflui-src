@@ -13,16 +13,16 @@ function Graph(type,id,prev){
 		this.src = '/modules/balken.pde';
 		break;
 		case "Toggle Graph":
-		this.prevsrc = '/modules/redondo_prev.pde';
-		this.src = '/modules/redondo.pde';
-		break;
-		case "Circle Graph":
 		this.prevsrc = '/modules/state_prev.pde';
 		this.src = '/modules/state.pde';
 		break;
+		case "Circle Graph":
+		this.prevsrc = '/modules/redondo_prev.pde';
+		this.src = '/modules/redondo.pde';
+		break;
 		case "Line Graph":
 		this.prevsrc = '/modules/balken_prev.pde';
-		this.src = '/modules/balken2/balken2.pde';
+		this.src = '/modules/balken2/balken.pde';
 		break;
 
 	}

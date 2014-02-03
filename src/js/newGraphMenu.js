@@ -176,7 +176,7 @@ newGraphMenue.set = function(e) {
 			var el = document.getElementById(nGraph.id);
 			var t = setTimeout(function() {
 				setActiveGraph(el);
-				say(Processing.getInstanceById(nGraph.id));
+				
 			},30);
 				
 

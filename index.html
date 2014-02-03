@@ -35,9 +35,9 @@
 <body>
 	<header>
 		<ul>
-			<li><a href="">Open</a></li>
-			<li><a href="">Save</a></li>
-			<li><a href="">Arduino</a></li>
+			<li><a href="#">Open</a></li>
+			<li><a href="#">Save</a></li>
+			<li><a href="#">Arduino</a></li>
 		</ul>
 		<ul id="ModeSelect">
 			<li>
@@ -55,6 +55,7 @@
 	</div>
 
 	<div class="SideBar Window">
+		<div></div>
 		<ul>
 			<li><a href="#"><img src="img/icon_arduino.png" alt=""></a></li>
 			<li><a href="#"><img src="img/icon_variable.png" alt=""></a></li>
@@ -67,7 +68,7 @@
 	<div id="stage">
 
 
-		<div id="testInput"></div>
+		
 		<div class="info">Doubleclick for new graph</div>
 			<!-- <canvas id="testCanvas"></canvas>	
 			<canvas data-processing-sources="modules/balken.pde" class="testCanvas2"></canvas>
@@ -105,10 +106,10 @@
 
 	<footer>
 		<ul>
-			<li>Graph</li>
-			<li>Variable</li>
-			<li>x:0</li>
-			<li>y:0</li>
+			<li id="footerGraph">Graph</li>
+			<li id="footerVar">Variable</li>
+			<li id="footerX">x:0</li>
+			<li id="footerY">y:0</li>
 		</ul>
 	</footer>
    

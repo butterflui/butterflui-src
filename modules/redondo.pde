@@ -17,7 +17,7 @@ float poti;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 float poti2;
 
 //name of the sensor
-String name;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+String name = "vergleich";//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 //das ist die beschreibung die im rahmen ist. momentan übernimmt sie
 //glaub ich mindestens 10 oder 9 buchstaben. unter dieser zahl
 //kommt eine fehlermeldung
@@ -140,14 +140,74 @@ float incrementWert2 = 0.002;
 
 
 
+
+
+///////////////////////////////////////////////////////////////////
+//Input and Output to JavaScript
+
+//getter
+float getValue(){
+  return poti;
+}
+
+float getThres(){
+  return treshold;
+}
+
+String getName(){
+  return name;
+}
+
+boolean getMin(){
+  return minimum;
+}
+
+boolean getMax(){
+  return maximum;
+}
+
+boolean getTicks(){
+  return tickMarks;
+}
+
+boolean getScale(){
+  return scale;
+}
+
+//setter
+
+void setProperties(obj) {
+  name = obj.name;
+  treshold = obj.thres;
+  minimum = obj.min;
+  maximum = obj.max;
+  tickMarks = obj.ticks;
+  scale = obj.scale;
+}
+
+void setValue(value) {
+  poti = value;
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
 void setup() {
   size(237, 510);
   noStroke();
   smooth();
 
   myTextIcon = createFont("sosa", 14, false);
-  myText = createFont("unit-light", 14, false);
-  myTextBold = createFont("unit-bold", 13, false);
+  myText = createFont("unit-thin", 14, false);
+  myTextBold = createFont("unit-medium", 13, false);
 
   for (int i = 0; i < xPosMin.length; i ++ ) {
     xPosMin[i] = 0;
@@ -252,10 +312,10 @@ void draw() {
   //BALKEN + TRESHOLD22222222222//////////////////////////////////////////////
   noFill();
   strokeWeight(13);
-  println("davor    "+poti2);
+  //println("davor    "+poti2);
   float grad2 = map(poti2, 0, 1024, 0, 360);
 
-  println("danach    "+grad2);
+  //("danach    "+grad2);
   stroke(barGraph2);
   //println("graaaaaad  "+grad);
   strokeCap(SQUARE);
@@ -604,7 +664,7 @@ if(display){
   
     
   //sensor beschreibung text
-  name = "vergleich"; 
+  
   String ss3 = name.substring(0, 9); 
   fill(frameColor);
   textAlign(LEFT, CENTER);
@@ -672,10 +732,18 @@ if(display){
 
   //symbol close
   fill(setColorSymbol2);
-  textAlign(CENTER, CENTER);
-  textFont(myTextIcon, 13);  
-  text("ã", frameBreite-20, 12);
+//  textAlign(CENTER, CENTER);
+//  textFont(myTextIcon, 13);  
+//  text("ã", frameBreite-20, 12);
   
+  pushMatrix();
+    translate(frameBreite-20, 14);
+    rotate(radians(45));
+    rect(0, 0,2,12);
+    rotate(radians(-90));
+    rect(0, 0,2,12);
+  popMatrix();
+ 
   
   
   
@@ -797,6 +865,9 @@ if(display){
     }
     popMatrix();
 
+    textFont(myText, 10);
+    fill(255);
+    textAlign(CENTER, CENTER);
     text("512", frameBreite/2, frameAbstandOben+durchmesserGross+21);
 
     if (poti >= 1024)
@@ -850,7 +921,7 @@ if(display){
     float nachTres= map(poti, 0, 1024, 0, 360);
 
     tresMax[tresMax.length-1] =  nachTres;
-    println("poti tres max  "+nachTres);
+    //println("poti tres max  "+nachTres);
 
     float tress = max(tresMax);
     // println("minn  "+ minn);
@@ -909,7 +980,7 @@ if(display){
   float nachTres= map(poti2, 0, 1024, 0, 360);
 
   tresMax2[tresMax2.length-1] =  nachTres;
-  println("poti tres max  "+nachTres);
+  //println("poti tres max  "+nachTres);
 
   float tress2 = max(tresMax2);
   // println("minn  "+ minn);

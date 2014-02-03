@@ -30,12 +30,13 @@ function disableDblClick(elementName) {
 function setActiveGraph(that){
 	activeGraph.id = $(that).attr('id');
 	activeGraph.pInstance = Processing.getInstanceById(activeGraph.id);
-	
-	activeGraph.X = that.pageX;
-	activeGraph.Y = that.pageY;	
+	var pos = $(that).position();
+	activeGraph.X = pos.left;
+	activeGraph.Y = pos.top;
 	getGraphProperties(activeGraph.pInstance);
 	changeActiveGraph();
-
+	setSettingProperties();
+	proofSettingProperties();
 	
 
 }
@@ -43,6 +44,7 @@ function setActiveGraph(that){
 function resetActiveGraph(){
 	activeGraph = new Object();
 	changeActiveGraph();
+	proofSettingProperties();
 }
 
 
@@ -61,26 +63,134 @@ function changeActiveGraph() {
 	
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Setup Window
+
+function proofSettingProperties() {
+	if (activeGraph.id) {
+		if (ModeRead() == "setup") {
+			$('#Settings>div').css('visibility', 'visible');
+			$('#settingsHelp').css('display', 'none');
+		
+		}
+	}else {
+		$('#SettingsVariables').css('visibility', 'hidden');
+		$('#inspector').css('visibility', 'hidden');
+		$('#settingsHelp').css('display', 'block');
+	
+	}
+}
+
+
+
+function setSettingProperties() {
+
+	$('.InspectorCheckbox[name=name]').prop("checked", true);
+	$('.InspectorCheckbox[name=thres]').prop("checked", true);
+	$('.InspectorCheckbox[name=range]').prop("checked", activeGraph.scale);
+	$('.InspectorCheckbox[name=min]').prop("checked", activeGraph.min);
+	$('.InspectorCheckbox[name=max]').prop("checked", activeGraph.max);
+	$('.InspectorCheckbox[name=dial]').prop("checked", activeGraph.ticks);
+
+	$('#nameInput').val(activeGraph.name);
+	$('#thresValInput').val(activeGraph.thres);
+
+	$('#footerX').text(activeGraph.X);
+	$('#footerY').text(activeGraph.Y);
+	$('#footerGraph').text(activeGraph.name);
+
+}
+
+
+
+function checkboxChanged(event, that){
+		if (activeGraph.id) {
+		
+		var elName = $(that).attr('name');
+		var checked = that.checked;
+
+		
+
+		switch(elName) {
+			case 'name':
+				
+			break;
+
+			case 'thres':
+				
+			break;
+
+			case 'range':
+				activeGraph.scale = checked;
+				
+			break;
+
+			case 'min':
+				activeGraph.min = checked;
+				
+			break;
+
+			case 'max':
+				activeGraph.max = checked;
+				
+			break;
+
+			case 'dial':
+				activeGraph.ticks = checked;
+				
+			break;
+		}
+
+		
+		setGraphProperties(activeGraph.pInstance);
+
+		}
+
+	}
+
+
+function inputFieldChange(event, that) {
+	if (activeGraph.id) {
+		
+		var elName = $(that).attr('name');
+		var input = $(that).val();
+
+		switch (elName) {
+			case 'nameInput':
+			activeGraph.name = input;
+			break;
+
+			case 'thresInput':
+			activeGraph.thres = input;
+			break;
+		}
+
+		setGraphProperties(activeGraph.pInstance);
+
+
+	}
+}
+
 
 //////////Getter - Setter ///////////////////////
 
  function getGraphProperties(pInstance) {
 
 	if (pInstance) {
-	activeGraph.properties = {};
-	activeGraph.properties.thres = pInstance.getThres();
-	activeGraph.properties.name = pInstance.getName();
-	activeGraph.properties.min = pInstance.getMin();
-	activeGraph.properties.max = pInstance.getMax();
-	activeGraph.properties.ticks = pInstance.getTicks();
-	activeGraph.properties.scale = pInstance.getScale();
-	say(activeGraph.properties);
-	};
+	
+	activeGraph.thres = pInstance.getThres();
+	activeGraph.name = pInstance.getName();
+	activeGraph.min = pInstance.getMin();
+	activeGraph.max = pInstance.getMax();
+	activeGraph.ticks = pInstance.getTicks();
+	activeGraph.scale = pInstance.getScale();
+	//say(activeGraph);
+	}
  }
 
  function setGraphProperties(pInstance) {
 
-	pInstance.setProperties(activeGraph.properties);
+	pInstance.setProperties(activeGraph);
 
  }
 
@@ -117,6 +227,7 @@ function setMode (mode) {
 			setMode("work");
 		});
 		$('.GraphCanvas').draggable({ disabled: false });
+		
 
 
 	if (activeGraph.id) {
@@ -129,9 +240,8 @@ function setMode (mode) {
 		$('.UIWindow').tabs({'active':0});
 		$('.GraphCanvas').removeClass('passiv');
 		resetActiveGraph();
-		$('#stage').bind("click",function () {
-			resetActiveGraph();
-		});
+		
+
 		$('.GraphCanvas').draggable({ disabled: true });
 	}
 }

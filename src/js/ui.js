@@ -4,18 +4,7 @@ newGraphMenue.listen();
 setMode("work");
 ModeSelectListener();
 
-$('.testCanvas').draggable();
-$('#eingabe').draggable();
 
-
-$('#testInput').click(function(){
-	event.stopPropagation();
-	event.preventDefault();
-	
-	
-
-
-});
 
 
 
@@ -34,6 +23,7 @@ function ModeSelectListener() {
 	});
 
 }
+
 
 
 

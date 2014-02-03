@@ -30,17 +30,14 @@ float poti; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 //poti ist die variable, die aus dem arduino kommt. weiter unten im code
 // ist poti mit dem zufallsgenerator gekoppelt.
 
-
 float potiRect;
 
 
 //name of the sensor
-String name; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+String name = "potentiometer"; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 //das ist die beschreibung die im rahmen ist. momentan übernimmt sie
 //glaub ich mindestens 10 oder 9 buchstaben. unter dieser zahl
 //kommt eine fehlermeldung
-
-
 
 //balken
 float balkenBreite = 150;
@@ -54,7 +51,7 @@ float mousePositionX = mouseX-xpos;
 float mousePositionY = mouseY-ypos;
 
 //frame
-float frameHoehe = 230;
+float frameHoehe = 250;
 float frameAbstandSeite = 40;
 float frameAbstandOben = 40;
 float frameBreite = frameAbstandSeite*2+balkenBreite;
@@ -74,7 +71,7 @@ boolean open = false;
 float incrementOpen = 1;
 
 //min
-boolean minimum =false;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+boolean minimum =true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 // mit diesem boolean kann der minimumwert ein oder ausgeschaltet werden
 float[] xPosMin = new float[100];
 float zeigerAnzeigeMin;
@@ -84,7 +81,7 @@ color minFarbe = color(48, 56, 58); //backgroundfarbe
 //color minFarbe = color(57, 122, 156);
 
 //max
-boolean maximum = false;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+boolean maximum = true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 // mit diesem boolean kann der maximumwert ein oder ausgeschaltet werden
 float[] xPosMax = new float[100];
 float maxx;
@@ -92,7 +89,7 @@ color maxFarbe = color(255);
 //color maxFarbe = color(57, 122, 156);
 
 //treshold
-float treshold = 1024;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+float treshold = 512;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 // mit diesem wert kann der threshold eingestellt werden
 color tresholdColor = color(166, 47, 25);
 float[] tresMax = new float[200];
@@ -109,6 +106,7 @@ boolean scale = true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 color skalenFarbe = color(150, 150, 150);
 
 //farben generell
+
 color backGround = color(48, 55, 57); //hintergrundfarbe
 color barGraph = color(56, 135, 166);
 color barGraphGround = color(152, 156, 156);
@@ -125,7 +123,6 @@ PFont myTextIcon;
 float generator;
 float startWert = 0.2;
 float incrementWert = 0.005;
-
 
 
 
@@ -169,28 +166,32 @@ void setProperties(obj) {
   treshold = obj.thres;
   minimum = obj.min;
   maximum = obj.max;
-  tickMarks = obj.tickMarks;
+  tickMarks = obj.ticks;
   scale = obj.scale;
 }
 
 void setValue(value) {
-  poti = value;
+  // if(play)
+  //   poti = oldPoti;
+  // else
+     poti= value;
 }
 
 ///////////////////////////////////////////////////////////////////
 
 
 
+
 void setup() {
-  size(237, 300);
+  size(237, 320);
   smooth();
   noStroke();
 
   //text set up
     myTextIcon = createFont("sosa", 14, false);
 
-  myText = createFont("unit-light", 14, false);
-  myTextBold = createFont("unit-bold", 13, false);
+  myText = createFont("unit-thin", 14, false);
+  myTextBold = createFont("unit-medium", 13, false);
 
   //initialisierung + nullsetzen für min array
   for (int i = 0; i < xPosMin.length; i ++ ) {
@@ -422,9 +423,9 @@ popMatrix();
                 for(int i=0; i<8; i++)
                 {
                   frameHoehe = frameHoehe + incrementOpen * -1;;
-                    if (frameHoehe < balkenHoehe+frameAbstandOben*2+40)
+                    if (frameHoehe < balkenHoehe+frameAbstandOben*2+60)
                     {
-                     frameHoehe = balkenHoehe+ frameAbstandOben*2+40;
+                     frameHoehe = balkenHoehe+ frameAbstandOben*2+60;
                     }
                 }
             }
@@ -436,9 +437,9 @@ popMatrix();
                 {
                   frameHoehe = frameHoehe + incrementOpen;
             
-                  if (frameHoehe >= 270)
+                  if (frameHoehe >= 290)
                   {
-                   frameHoehe = 270;
+                   frameHoehe = 290;
                   }
                  }
             }
@@ -451,9 +452,9 @@ popMatrix();
                 {
                   frameHoehe = frameHoehe + incrementOpen;
             
-                  if (frameHoehe >= 108)
+                  if (frameHoehe >= 128)
                   {
-                   frameHoehe = 108;
+                   frameHoehe = 128;
                   }
                  }
             }
@@ -466,9 +467,9 @@ popMatrix();
                 {
                   frameHoehe = frameHoehe + incrementOpen;
             
-                  if (frameHoehe >= 230)
+                  if (frameHoehe >= 245)
                   {
-                   frameHoehe = 230;
+                   frameHoehe = 245;
                   }
                  }
             }
@@ -481,7 +482,7 @@ popMatrix();
             noStroke();
             fill(backGround);
             rectMode(CORNER); 
-            rect(0, frameHoehe-40, frameBreite, 200);     
+            rect(0, frameHoehe-60, frameBreite, 200);     
 
             //frame/////////////////
             noFill();
@@ -513,7 +514,7 @@ popMatrix();
       rect(24, 0, 80, 20); 
     
       //sensor beschreibung
-      name = "potentiometer"; 
+      
       //name = (String) $('#name').val();
       String ss3 = name.substring(0, 9);  // Returns "CC"
       //println(ss3); 
@@ -588,10 +589,17 @@ popMatrix();
 
   //symbol close
   fill(setColorSymbol2);
-  textAlign(CENTER, CENTER);
-  textFont(myTextIcon, 13);  
-  text("ã", frameBreite-20, 12);
+//  textAlign(CENTER, CENTER);
+//  textFont(myTextIcon, 13);  
+//  text("ã", frameBreite-20, 12);
   
+  pushMatrix();
+    translate(frameBreite-20, 14);
+    rotate(radians(45));
+    rect(0, 0,2,12);
+    rotate(radians(-90));
+    rect(0, 0,2,12);
+  popMatrix();
  
   
   
@@ -640,22 +648,67 @@ popMatrix();
     vertex(frameBreite/2-3, 7+frameHoehe);
     endShape();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     //slider line
+    //grundlinie
     strokeWeight(1);
     stroke(frameColor);
-    line(balkenBreite/2-frameAbstandSeite, frameHoehe-40, balkenBreite+frameAbstandSeite, frameHoehe-40);
-
+    line(balkenBreite/2-frameAbstandSeite, frameHoehe-45, balkenBreite+frameAbstandSeite, frameHoehe-45);
+     
+    //korrespodierende linie blau/ tresholdColor
+      if(poti >= treshold)
+    {
+      stroke(tresholdColor);
+    }
+    else
+    {
+      stroke(barGraph);
+    }
+    
+    strokeWeight(2);
+    line(balkenBreite/2-frameAbstandSeite, frameHoehe-45, xSlider, frameHoehe-45);
+   
+   
+      //timer
+     fill(setColorSymbol2);
+     textAlign(LEFT, CENTER);
+     textFont(myText, 13);  
+     int timer = (int)map(xSlider,40,190,0,60);
+     text("00:"+ timer , frameBreite/2-17, frameHoehe-65);
 
 
     //slider Ellipse
-    if (mousePressed && dist(xSlider, frameHoehe-40, mousePositionX, mousePositionY) < 15)
+    //hover
+        if (dist(xSlider, frameHoehe-45, mousePositionX, mousePositionY) < 13)
+      {  noStroke();
+        fill(220);
+      ellipse(xSlider, frameHoehe-45, 13, 13);  
+  }
+
+    if (mousePressed && dist(xSlider, frameHoehe-45, mousePositionX, mousePositionY) < 15)
     {
+      noStroke();
+      fill(255,180);
+      ellipse(xSlider, frameHoehe-45, 17, 17);
 
       xSlider = mousePositionX;
     }
     noStroke();
     xSlider = constrain(xSlider, frameAbstandSeite, balkenBreite+frameAbstandSeite);
-    ellipse(xSlider, frameHoehe-40, 12, 12);
+    ellipse(xSlider, frameHoehe-45, 12, 12);
+
   }
 
   else
@@ -669,6 +722,7 @@ popMatrix();
     //slider position zurücksetzen
     xSlider = balkenBreite+frameAbstandSeite;
   }
+  
 
 
 
@@ -748,6 +802,7 @@ popMatrix();
         {
           stroke(255);
         }
+        strokeWeight(1);
         beginShape();
         vertex(0+tresholdAnzeige+frameAbstandSeite, frameAbstandOben+12);
         vertex(-5+tresholdAnzeige+frameAbstandSeite, -8+frameAbstandOben+12);
@@ -924,14 +979,9 @@ float noiseValue(){
 float timelapsValue(float[] timelapsArr, float sliderValue) {
   int ArrPosition = int(map(sliderValue, 0, 150, 0 , timelapsArr.length-1));
   return timelapsArr[ArrPosition];
-
-
-
-
-
-
 }
  
+ 
 
-
+ 
 
