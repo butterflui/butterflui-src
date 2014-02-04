@@ -34,7 +34,7 @@ float potiRect;
 
 
 //name of the sensor
-String name = "potentiometer"; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+String name = "Bar Graph"; //!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 //das ist die beschreibung die im rahmen ist. momentan übernimmt sie
 //glaub ich mindestens 10 oder 9 buchstaben. unter dieser zahl
 //kommt eine fehlermeldung
@@ -71,7 +71,7 @@ boolean open = false;
 float incrementOpen = 1;
 
 //min
-boolean minimum =true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+boolean minimum =false;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 // mit diesem boolean kann der minimumwert ein oder ausgeschaltet werden
 float[] xPosMin = new float[100];
 float zeigerAnzeigeMin;
@@ -81,7 +81,7 @@ color minFarbe = color(48, 56, 58); //backgroundfarbe
 //color minFarbe = color(57, 122, 156);
 
 //max
-boolean maximum = true;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+boolean maximum = false;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 // mit diesem boolean kann der maximumwert ein oder ausgeschaltet werden
 float[] xPosMax = new float[100];
 float maxx;
@@ -89,7 +89,7 @@ color maxFarbe = color(255);
 //color maxFarbe = color(57, 122, 156);
 
 //treshold
-float treshold = 512;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
+float treshold = 1024;//!!!!!!!!!!!!!!!! FÜR JAVASCRIPT!!!!!!!!!!!!!!!!
 // mit diesem wert kann der threshold eingestellt werden
 color tresholdColor = color(166, 47, 25);
 float[] tresMax = new float[200];
@@ -107,7 +107,7 @@ color skalenFarbe = color(150, 150, 150);
 
 //farben generell
 
-color backGround = color(48, 55, 57); //hintergrundfarbe
+color backGround = color(48, 56, 58); //hintergrundfarbe
 color barGraph = color(56, 135, 166);
 color barGraphGround = color(152, 156, 156);
 color textColor = color(255);

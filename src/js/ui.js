@@ -5,7 +5,11 @@ setMode("work");
 ModeSelectListener();
 
 
-
+var socket = io.connect('http://localhost');
+  socket.on('analogRead', function (data) {
+    console.log(data);
+    
+  });
 
 
 getUIWindow();

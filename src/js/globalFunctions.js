@@ -95,8 +95,8 @@ function setSettingProperties() {
 	$('#nameInput').val(activeGraph.name);
 	$('#thresValInput').val(activeGraph.thres);
 
-	$('#footerX').text(activeGraph.X);
-	$('#footerY').text(activeGraph.Y);
+	$('#footerX').text('X:'+activeGraph.X);
+	$('#footerY').text('Y:'+activeGraph.Y);
 	$('#footerGraph').text(activeGraph.name);
 
 }

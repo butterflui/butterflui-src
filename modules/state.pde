@@ -183,7 +183,7 @@ void draw() {
   color setColorRect = color(255,0);
   color setColorSymbol = (int)frameColor;
 
-  if (dist(frameBreite-40, 12, mousePositionX, mousePositionY) < 15)
+  if (dist(frameBreite-55, 12, mousePositionX, mousePositionY) < 15)
   { 
          setColorRect = color(255,20); 
          setColorSymbol = color(255,180);     
@@ -208,14 +208,14 @@ void draw() {
    //symbol setting
   fill(setColorSymbol);
   rectMode(CORNER);
-  rect(0+frameBreite-40,0+10,2,10);
-  rect(-1+frameBreite-40,3+10,4,2);
+  rect(0+frameBreite-65,0+10,2,10);  //40
+  rect(-1+frameBreite-65,3+10,4,2);
   
-  rect(5+frameBreite-40,0+10,2,10);
-  rect(4+frameBreite-40,5+10,4,2);
+  rect(5+frameBreite-65,0+10,2,10);
+  rect(4+frameBreite-65,5+10,4,2);
   
-  rect(10+frameBreite-40,0+10,2,10);
-  rect(9+frameBreite-40,2+10,4,2);
+  rect(10+frameBreite-65,0+10,2,10);
+  rect(9+frameBreite-65,2+10,4,2);
   
   
   

@@ -19,7 +19,7 @@ function getUIWindow() {
 			mode:  "text/x-c++src",
 			lineNumbers: "true",
 			theme: "default",
-			value: "int analogInputsToReport = 0;\nfor (var i = Things.length - 1; i >= 0; i--) {Things[i]};\n\nif (true) {};"
+			value: ""
 		});
 		$('.CodeMirror').resizable();
 		$('.CodeMirror').mousedown(function () {
