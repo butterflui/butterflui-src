@@ -1,13 +1,15 @@
 var app = require('http').createServer(handler)
-  , io = require('socket.io').listen(app)
+  , io = require('socket.io').listen(app, { log: false })
   , fs = require('fs')
   , url = require("url")
   , path = require("path")
   , five = require("./libs/johnny-five/lib/johnny-five.js")
   , board
-  , photoresistor;
+  , pinA0
+  , analogData = new Object();
 
-app.listen(8080);
+app.listen(8888);
+
 board = new five.Board();
 
 
@@ -48,29 +50,72 @@ function handler (request, response) {
 
 
 
+
+
+
+
+
 board.on("ready", function() {
+ 
+var that = this;
 
-  // Create a new `photoresistor` hardware instance.
-  photoresistor = new five.Sensor({
-    pin: "A0",
-    freq: 1
-  });
 
-  // Inject the `sensor` hardware into
-  // the Repl instance's context;
-  // allows direct command line access
-  board.repl.inject({
-    pot: photoresistor
-  });
+  
+ 
+
+for (var i = 0; i < 5; i++) {
+     this.pinMode(i,five.Pin.ANALOG);
+ }
+
+  //this.loop(100, function() {
+   
+     this.analogRead(0, function(voltage) {
+      analogData.A0 = voltage;
+      });
+
+     this.analogRead(1, function(voltage) {
+      analogData.A1 = voltage;
+      });
+
+     this.analogRead(2, function(voltage) {
+      analogData.A2 = voltage;
+      });
+
+     this.analogRead(3, function(voltage) {
+      analogData.A3 = voltage;
+      });
+
+     this.analogRead(4, function(voltage) {
+      analogData.A4 = voltage;
+      });
+
+     this.analogRead(5, function(voltage) {
+      analogData.A5 = voltage;
+      });
+   
+  
+      
+   // });
+
+
+ 
+ 
+
+
+
 
   io.sockets.on('connection', function (socket) {
 
-
     // socket.emit('analogRead', { hello: 'world' });
-    photoresistor.on("data", function() {
-    //console.log(this.value);
-    socket.emit('analogRead', { A0: this.value});
-  });
+    
+ 
+   that.loop(1, function() {
+   //console.log(analogData);
+   socket.emit('analogRead', { values: analogData});
+    });
+  
+    
+ 
   
 
 });
@@ -123,3 +168,42 @@ console.log("Static file server running at\n  => http://localhost: 8080 /\nCTRL 
 // // References
 // //
 // // http://nakkaya.com/2009/10/29/connecting-a-photoresistor-to-an-arduino/
+
+
+
+
+
+
+
+// if(board.io !== null){
+// board.on("ready", function() {
+
+//   // Create a new `photoresistor` hardware instance.
+//   pinA0 = new five.Sensor({
+//     pin: "A0",
+//     freq: 1
+//   });
+
+//   // Inject the `sensor` hardware into
+//   // the Repl instance's context;
+//   // allows direct command line access
+//   board.repl.inject({
+//     pot: pinA0
+//   });
+
+//   io.sockets.on('connection', function (socket) {
+
+
+//     // socket.emit('analogRead', { hello: 'world' });
+//     pinA0.on("data", function() {
+//     //console.log(this.value);
+//     socket.emit('analogRead', { A0: this.value});
+//   });
+  
+
+// });
+
+//   // "data" get the current reading from the photoresistor
+  
+// });
+// }

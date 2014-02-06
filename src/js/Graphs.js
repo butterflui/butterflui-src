@@ -41,7 +41,7 @@ function Graph(type,id,prev){
 		
 	}
 
-	
+
 	disableDblClick(this.canvas);
 	$(this.canvas).click(function(event) {
 		event.preventDefault();

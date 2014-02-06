@@ -24,6 +24,45 @@ function disableDblClick(elementName) {
 	});
 }
 
+function proofFirstUse(){
+	if (firstUse){
+		$('.info').css('color', '#CDCDCD');
+		firstUse = false;
+	}
+	else
+		$('.info').css('color', '');
+}
+///////////////////////////////////////////////////////////////////////////////
+// Global Window Actions
+
+function setActiveWindow(selector){
+
+	if(activeWindow.Class) {
+		inactiveWindow.Class = activeWindow.Class;
+		
+	}
+
+	activeWindow.Class = selector;
+
+	
+	
+
+	var activeEl = selector+">ul>li";
+	$(activeEl).css('background-color','');
+
+	
+
+	if(inactiveWindow.Class) {
+		
+		if(inactiveWindow.Class !== activeWindow.Class) {
+			var inactiveEl = inactiveWindow.Class+">ul>li";
+			
+			$(inactiveEl+'.ui-tabs-active').css('background-color','#9B9B9B');
+			
+		}
+	}
+
+}
 ///////////////////////////////////////////////////////////////////////////////
 // Graph Object
 
@@ -63,6 +102,23 @@ function changeActiveGraph() {
 	
 }
 
+
+function bindArduinoInput(that, vari){
+	
+	var id = $(that).attr('id');
+	var pInstance = Processing.getInstanceById(id);
+	var value;
+
+	var t = setInterval(function(){
+		//say(arduinoPorts);
+		value = arduinoPorts.values[vari];
+
+		pInstance.setValue(value);
+
+
+	},1);
+
+}
 ///////////////////////////////////////////////////////////////////////////////
 // Setup Window
 
@@ -198,7 +254,7 @@ function inputFieldChange(event, that) {
 // Mode Select
 
 function setMode (mode) {
-
+	setActiveWindow('.UIWindow');
 
 	if (typeof mode == "object") {
 		var that = mode;
@@ -227,6 +283,7 @@ function setMode (mode) {
 			setMode("work");
 		});
 		$('.GraphCanvas').draggable({ disabled: false });
+
 		
 
 

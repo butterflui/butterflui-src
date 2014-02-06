@@ -1129,14 +1129,14 @@ if(display){
   generator =(noise(startWert+= incrementWert));
   generator = map(generator, 0, 1, 0, 1024);
 
-  poti = generator;
+  if(!play) poti = generator;
   //println("POTI    "+poti);
 
 
   generator2 =(noise(startWert2+= incrementWert2));
   generator2 = map(generator2, 0, 1, 0, 1024);
 
-  poti2 = generator2;
+  if(!play) poti2 = generator2;
 
   popMatrix();
 }

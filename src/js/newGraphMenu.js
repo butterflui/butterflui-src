@@ -18,10 +18,13 @@ newGraphMenue.set = function(e) {
 	var startPosition = new Object;
 	startPosition.X = e.pageX;
 	startPosition.Y = e.pageY;
+
+	proofFirstUse();
 	
 
 	/////////////////////////////////////////////////////////////////////
 	// Variables and Html Windows
+	
 	var toggleWindow2 = 0;
 	var GraphMenue = $("<div/>", {"class":"ListWindow Variables"});
 
@@ -102,6 +105,8 @@ newGraphMenue.set = function(e) {
 
 					case 2:
 					$(ArdView).remove();
+					$(GraphView).remove();
+
 					$(".ListWindowArd").removeClass('active');
 					$('.Arduino input[type=checkbox]').prop('checked', false);
 
@@ -143,7 +148,7 @@ newGraphMenue.set = function(e) {
 
 	/////////////////////////////////////////////////////////////////////
 	//Show Graph Selector Window
-	function showGraphView(e, positionX, positionY) {
+	function showGraphView(e, positionX, positionY, selectedPin) {
 		
 		
 		
@@ -176,8 +181,12 @@ newGraphMenue.set = function(e) {
 			var el = document.getElementById(nGraph.id);
 			var t = setTimeout(function() {
 				setActiveGraph(el);
+				//bind Variable to Graph if vari != null
+				if (selectedPin) {
+					bindArduinoInput(el,selectedPin);
+				}
 				
-			},30);
+			},50);
 				
 
 			setMode('setup');
@@ -218,14 +227,19 @@ newGraphMenue.set = function(e) {
 
 	function selectArduinoPin(event,that){
 		event.stopPropagation();
+		var selectedPin = null;
 
 		var checked = $('.Arduino input[type=checkbox]').is(':checked');
 
+
 		if (checked) {
-		showGraphView(event, $(ArdView).offset().left+$(ArdView).width()+11, $(ArdView).offset().top);
+			
+			selectedPin = $(that).attr('name');
+		showGraphView(event, $(ArdView).offset().left+$(ArdView).width()+11, $(ArdView).offset().top, selectedPin);
 		}else
 		{
 			$(GraphView).remove();
+			selectedPin = null;
 		}
 		//console.log($(ArdView).offset().left);
 

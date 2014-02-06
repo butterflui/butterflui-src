@@ -21,6 +21,9 @@ float[] timelaps = new float[timelapslaenge];
 boolean display = true;
 
 
+//randomValue active
+boolean randomGen = true;
+
 //darkening
 int farbeFull = 0;
 int farbeWeg = 5;
@@ -171,10 +174,9 @@ void setProperties(obj) {
 }
 
 void setValue(value) {
-  // if(play)
-  //   poti = oldPoti;
-  // else
-     poti= value;
+  randomGen = false;
+  if(!play)poti = value;
+
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -697,7 +699,7 @@ popMatrix();
       ellipse(xSlider, frameHoehe-45, 13, 13);  
   }
 
-    if (mousePressed && dist(xSlider, frameHoehe-45, mousePositionX, mousePositionY) < 15)
+    if (mousePressed && dist(xSlider, frameHoehe-45, mousePositionX, mousePositionY) < 50)
     {
       noStroke();
       fill(255,180);
@@ -902,11 +904,6 @@ popMatrix();
       }
 
   popMatrix(); 
-  //ZUFALLSGENERATOR/////////////////////////////////////////////////////
-  generator =(noise(startWert+= incrementWert));
-  generator = map(generator, 0, 1, 0, 1024);
-  //println("generator   "+generator);
-  poti = generator;
   
   
   
@@ -932,8 +929,11 @@ popMatrix();
    }else{
 
   // wenn slider nicht angezeigt wird
-    poti = noiseValue();
-    timeLapsFill(poti);
+    if(randomGen)
+    {
+      if(!play) poti = noiseValue();
+    } 
+    if (!play) timeLapsFill(poti);
 
    }
     
