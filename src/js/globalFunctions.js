@@ -24,13 +24,12 @@ function disableDblClick(elementName) {
 	});
 }
 
-function proofFirstUse(){
-	if (firstUse){
-		$('.info').css('color', '#CDCDCD');
-		firstUse = false;
-	}
-	else
-		$('.info').css('color', '');
+function FirstUse(bool){
+	
+	var t = setTimeout(function(){
+		$('.infoBlend').addClass('transparent');
+	},5000);
+		
 }
 ///////////////////////////////////////////////////////////////////////////////
 // Global Window Actions

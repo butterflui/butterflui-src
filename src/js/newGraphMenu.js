@@ -19,7 +19,7 @@ newGraphMenue.set = function(e) {
 	startPosition.X = e.pageX;
 	startPosition.Y = e.pageY;
 
-	proofFirstUse();
+	
 	
 
 	/////////////////////////////////////////////////////////////////////

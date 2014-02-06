@@ -15,8 +15,7 @@ catch(err){
 	//say(err);
 }
 
-
-proofFirstUse();
+FirstUse();
 
 
 
