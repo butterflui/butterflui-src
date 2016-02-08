@@ -4,16 +4,7 @@ newGraphMenue.listen();
 setMode("work");
 ModeSelectListener();
 
-try{
-var socket = io.connect('http://localhost');
-  socket.on('analogRead', function (data) {
-   //console.log(data);
-    arduinoPorts = data;
-  });
-}
-catch(err){
-	//say(err);
-}
+
 
 FirstUse();
 

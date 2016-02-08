@@ -1,3 +1,45 @@
+var jQuery = $ = require('jquery');
+require('jquery-ui');
+var fs = require('fs');
+
+
+var five = require("johnny-five");
+
+
+
+
+var board = new five.Board({ port: "COM7" });
+
+function Arduino(pin) {
+	
+	this.getData = function(pin) {
+
+		board.on("ready", function() {
+	 
+			var that = this;
+
+			that.pinMode(13, five.Pin.OUTPUT);
+			that.digitalWrite(13, 1);
+			say("hello_arduino");
+
+
+
+
+
+			 
+
+			
+			this.pinMode(pin,five.Pin.ANALOG);
+			this.analogRead(pin, function(voltage) {
+			  	arduinoPorts[pin] = voltage;
+			     	
+			});
+		});
+	};
+};
+
+
+
 function generateUUID() {
 
 	
@@ -109,11 +151,12 @@ function bindArduinoInput(that, vari){
 	var value;
 
 	var t = setInterval(function(){
-		//say(arduinoPorts);
-		value = arduinoPorts.values[vari];
-
-		pInstance.setValue(value);
-
+		
+		
+	value = getArduinoData(vari);
+		
+		if(value !== undefined)pInstance.setValue(value);
+		
 
 	},1);
 

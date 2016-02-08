@@ -6,3 +6,4 @@ Variables = {
 	varBoolean:["toggleMenue","listSomething"],
 	varString:["myNameIs","text"]
 };
+
